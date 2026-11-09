@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>品牌营销负责人 · 人才 mapping 看板</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23B1130F'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23FFFFFF' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23FFFFFF'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#F5F1EA;
+  --surface:#FFFFFF;
+  --surface-2:#FBF8F2;
+  --ink:#241C17;
+  --ink-2:#5E554D;
+  --ink-3:#8A8076;
+  --line:#E7DFD3;
+  --line-2:#F0E9DE;
+  --red:#B1130F;
+  --red-deep:#7F0D0A;
+  --red-soft:#F8E8E5;
+  --gold:#A97E2F;
+  --gold-soft:#F6EEDB;
+  --green:#2E7D4F;
+  --green-soft:#E6F1EA;
+  --blue:#2F5E8C;
+  --blue-soft:#E7EFF6;
+  --t1:#B1130F; --t2:#2E7D4F; --t3:#2F5E8C;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(36,28,23,.05),0 6px 20px rgba(36,28,23,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei","Source Han Sans SC",system-ui,-apple-system,sans-serif;
+  font-size:15px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--red);color:#fff}
+a{color:inherit;text-decoration:none}
+.tnum{font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.sec{padding:56px 0 8px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.sec-num{
+  font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+  border-radius:8px;padding:3px 10px;letter-spacing:.06em;flex:none;
+}
+.sec-title{font-size:24px;font-weight:800;letter-spacing:.01em}
+.sec-sub{font-size:13px;color:var(--ink-3);margin-top:2px}
+.section-line{height:1px;background:var(--line);margin-top:44px}
+
+/* ===== 顶部导航 ===== */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(36,28,23,.96);color:#F5EFE6;
+  backdrop-filter:blur(8px);
+}
+.nav-inner{display:flex;align-items:center;gap:18px;height:56px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:.02em;flex:none}
+.brand-dot{width:22px;height:22px;border-radius:6px;background:var(--red);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  flex:none;padding:6px 12px;border-radius:8px;font-size:13px;color:#CFC6BA;
+}
+.nav-links a:hover{background:rgba(255,255,255,.08);color:#fff}
+.nav-meta{flex:none;font-size:12px;color:#B9AFA3;display:flex;align-items:center;gap:8px}
+.nav-meta .dot{width:6px;height:6px;border-radius:50%;background:#6FBF8B}
+
+/* ===== Hero ===== */
+.hero{padding:44px 0 30px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;opacity:.5}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--red);background:var(--red-soft);border:1px solid #F0D2CD;padding:4px 12px;border-radius:999px}
+.hero h1{font-size:38px;line-height:1.22;font-weight:900;letter-spacing:.01em;margin:16px 0 10px}
+.hero h1 .accent{color:var(--red)}
+.hero-sub{font-size:15px;color:var(--ink-2);max-width:760px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.hero-meta .chip{font-size:12.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:4px 11px}
+.kpi-band{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.kpi{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red)}
+.kpi .num{font-size:30px;font-weight:900;letter-spacing:.01em}
+.kpi .num small{font-size:15px;font-weight:700;margin-left:2px;color:var(--ink-2)}
+.kpi .lab{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.kpi:nth-child(2)::before{background:var(--gold)}
+.kpi:nth-child(3)::before{background:var(--green)}
+.kpi:nth-child(4)::before{background:var(--blue)}
+
+/* ===== 通用卡片 ===== */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pad{padding:22px 24px}
+.card-title{font-size:16px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-title .bar{width:4px;height:16px;border-radius:2px;background:var(--red)}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:13.5px}
+.dl dt{color:var(--ink-3);font-weight:600;white-space:nowrap}
+.dl dd{color:var(--ink)}
+ul.clean{list-style:none}
+ul.clean li{position:relative;padding-left:18px;font-size:13.5px;color:var(--ink-2);margin-bottom:7px}
+ul.clean li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:2px;background:var(--red)}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);margin:0 6px 6px 0}
+
+/* 画像维度 */
+.portrait{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}
+.portrait-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.portrait-item .p-ic{font-size:20px}
+.portrait-item .p-t{font-size:13.5px;font-weight:800;margin-top:8px}
+.portrait-item .p-d{font-size:12px;color:var(--ink-3);margin-top:3px;line-height:1.5}
+
+/* ===== 目标公司版图 ===== */
+.sector-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.sector{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.sector h4{font-size:14.5px;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sector h4 .cnt{font-size:12px;font-weight:600;color:var(--ink-3)}
+.sector .cos{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.co-chip{font-size:12px;padding:3px 9px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink)}
+.co-chip b{font-weight:600}
+.co-chip .subs{color:var(--ink-3);font-weight:400}
+
+/* ===== 图表容器 ===== */
+.chart{width:100%}
+.chart-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px}
+.chart-box .chart-title{font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.chart-box .chart-title .hint{font-size:12px;font-weight:400;color:var(--ink-3)}
+
+/* ===== 筛选条 ===== */
+.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow)}
+.f-group{display:flex;align-items:center;gap:6px}
+.f-label{font-size:12.5px;color:var(--ink-3);font-weight:600;margin-right:2px}
+.chip-btn{
+  font-size:12.5px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);
+  background:var(--surface-2);color:var(--ink-2);cursor:pointer;font-family:inherit;transition:all .15s;
+}
+.chip-btn:hover{border-color:var(--ink-3)}
+.chip-btn.on{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:600}
+.f-select{
+  font-size:12.5px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);
+  background:var(--surface-2);color:var(--ink);font-family:inherit;cursor:pointer;
+}
+
+/* ===== 人选卡片 ===== */
+.cand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cand{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;box-shadow:var(--shadow);cursor:pointer;position:relative;
+  transition:transform .15s,box-shadow .15s,border-color .15s;display:flex;flex-direction:column;gap:10px;
+}
+.cand:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(36,28,23,.10);border-color:#D8CBB9}
+.cand-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.track-badge{font-size:11.5px;font-weight:700;color:#fff;border-radius:6px;padding:2px 9px}
+.match-stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+.cand-name{font-size:19px;font-weight:900;line-height:1.2}
+.cand-role{font-size:13px;color:var(--ink-2)}
+.cand-score-row{display:flex;align-items:center;gap:14px;margin:2px 0}
+.cand-score{font-size:30px;font-weight:900;line-height:1;color:var(--red)}
+.cand-score small{font-size:12px;color:var(--ink-3);font-weight:600;display:block;margin-top:2px}
+.cand-rank{font-size:11.5px;color:var(--ink-3);background:var(--surface-2);border:1px solid var(--line);padding:3px 8px;border-radius:6px}
+.cand-tags{margin-top:2px}
+.cand-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-3);flex-wrap:wrap;margin-top:auto}
+.loc{display:inline-flex;align-items:center;gap:4px}
+.stars{display:inline-flex;align-items:center;gap:1px;vertical-align:-2px}
+.star{fill:none;stroke:var(--gold);stroke-width:1.7;stroke-linejoin:round}
+.star.on{fill:var(--gold);stroke:var(--gold)}
+.cand.sum-card{border:1.5px dashed #D9C79E;background:var(--gold-soft);cursor:pointer}
+.cand.sum-card:hover{border-color:var(--gold)}
+.diff-badge{font-size:11.5px;font-weight:700;border-radius:6px;padding:2px 9px;color:#fff}
+.tier-flag{position:absolute;top:0;right:18px;font-size:11px;font-weight:800;color:#fff;background:var(--gold);padding:3px 10px;border-radius:0 0 8px 8px}
+.cand-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);padding-top:9px;font-size:12px;color:var(--ink-3)}
+.cand-foot .open{color:var(--red);font-weight:700}
+
+/* ===== 添加候选人 ===== */
+.add-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:9px;border:1px solid var(--red);background:var(--red);color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+.add-btn:hover{background:#8F100C}
+.cand.new{outline:2px dashed #D9C79E;outline-offset:-2px}
+.new-flag{position:absolute;top:-8px;left:14px;font-size:11px;font-weight:800;color:#fff;background:var(--green);padding:2px 9px;border-radius:999px;z-index:2}
+.del-btn{position:absolute;top:-8px;right:14px;font-size:13px;font-weight:800;color:#fff;background:var(--red);border:none;border-radius:999px;padding:1px 10px;cursor:pointer;font-family:inherit;z-index:3;line-height:1.5}
+.del-btn:hover{background:#8F100C}
+.form-modal{max-width:680px}
+.cand-form{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;margin-top:18px}
+.f-field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.f-field.full{grid-column:1/-1}
+.f-field label{font-size:12px;font-weight:700;color:var(--ink-3)}
+.f-field label .req{color:var(--red)}
+.f-field input,.f-field select,.f-field textarea{font-family:inherit;font-size:13.5px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;box-sizing:border-box}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{outline:none;border-color:var(--red)}
+.f-field textarea{min-height:56px;resize:vertical}
+.f-note{grid-column:1/-1;font-size:12px;line-height:1.6;color:var(--ink-3);background:var(--gold-soft);border:1px solid #EADFC8;border-radius:8px;padding:9px 12px}
+.form-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:10px;margin-top:4px}
+.btn-ghost{padding:8px 16px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-primary{padding:8px 16px;border-radius:9px;border:none;background:var(--red);color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-primary:hover{background:#8F100C}
+
+/* ===== 弹层 ===== */
+.modal-mask{position:fixed;inset:0;background:rgba(30,22,17,.55);z-index:80;display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow:auto}
+.modal-mask.show{display:flex}
+.modal{background:var(--surface);border-radius:18px;max-width:760px;width:100%;padding:30px 34px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal-close{position:absolute;top:16px;right:18px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2);font-size:16px;cursor:pointer;line-height:1}
+.modal-close:hover{background:var(--ink);color:#fff}
+.modal-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.modal-name{font-size:26px;font-weight:900}
+.modal-role{font-size:14px;color:var(--ink-2);margin-top:4px}
+.modal-sec{margin-top:20px}
+.modal-sec h4{font-size:13.5px;font-weight:800;color:var(--ink-3);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.modal-sec h4::before{content:"";width:6px;height:6px;border-radius:2px;background:var(--red)}
+.modal-sec p,.modal-sec li{font-size:13.5px;color:var(--ink)}
+.dim-bars{margin-top:6px}
+.dim-row{display:grid;grid-template-columns:88px 1fr 34px;align-items:center;gap:10px;margin-bottom:7px;font-size:12.5px}
+.dim-row .d-n{color:var(--ink-3)}
+.dim-track{height:7px;background:var(--line-2);border-radius:4px;overflow:hidden}
+.dim-fill{height:100%;border-radius:4px;background:var(--red)}
+.dim-v{text-align:right;font-weight:700;color:var(--ink-2)}
+
+/* ===== 组织版图 ===== */
+.org-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.org-tab{padding:7px 16px;border-radius:9px;border:1px solid var(--line);background:var(--surface);font-size:13.5px;font-weight:600;color:var(--ink-2);cursor:pointer;font-family:inherit}
+.org-tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.org-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.org-co{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.org-co-head{padding:12px 15px;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--surface-2);border-bottom:1px solid var(--line-2);}
+.org-co-head .n{display:flex;align-items:center;gap:7px;min-width:0}
+.org-co-head .cnt{font-size:11.5px;color:var(--ink-3);font-weight:600;flex:none}
+/* 调整了默认展开的样式 */
+.org-execs{display:flex;padding:14px 15px 18px 15px;gap:8px;flex-wrap:wrap;} 
+.exec-chip{font-size:12px;padding:4px 10px;border-radius:7px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2)}
+.exec-chip.core{background:var(--red-soft);border-color:#EEC9C4;color:var(--red-deep);font-weight:700}
+.exec-chip .role{color:var(--ink-3);font-weight:400}
+.org-root{background:var(--ink);color:#fff;border-radius:12px;padding:14px 20px;display:flex;align-items:center;justify-content:flex-start;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.org-root .r-t{font-size:16px;font-weight:800}
+
+/* ===== 评分矩阵表 ===== */
+.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}
+table.matrix{width:100%;border-collapse:collapse;font-size:12.8px;min-width:880px}
+table.matrix th,table.matrix td{padding:9px 10px;border-bottom:1px solid var(--line-2);text-align:center;white-space:nowrap}
+table.matrix thead th{background:var(--surface-2);font-weight:700;color:var(--ink-2);font-size:12.3px;position:sticky;top:0;user-select:none}
+#matrixTable thead th{cursor:pointer}
+#matrixTable thead th:hover{color:var(--red)}
+table.matrix thead th .arr{font-size:10px;color:var(--ink-3)}
+#matrixTable tbody tr{cursor:pointer}
+#matrixTable tbody tr:hover{background:var(--gold-soft)}
+table.matrix tbody tr.top3{background:#FCF8EE}
+table.matrix td.name{text-align:left;font-weight:700}
+table.matrix td.co{text-align:left;color:var(--ink-2);max-width:150px;overflow:hidden;text-overflow:ellipsis}
+table.matrix td.score{font-weight:900;color:var(--red);font-size:14px}
+.diff-cell{display:inline-block;font-size:11px;font-weight:700;color:#fff;border-radius:5px;padding:2px 8px}
+
+/* ===== 推荐 ===== */
+.reco-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.reco-head{padding:16px 20px;color:#fff;display:flex;align-items:center;gap:12px}
+.reco-head.r1{background:linear-gradient(135deg,#7F0D0A,#B1130F)}
+.reco-head.r2{background:linear-gradient(135deg,#8A5E1D,#A97E2F)}
+.reco-head.r3{background:linear-gradient(135deg,#4C3A1F,#7A5F33)}
+.reco-medal{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;flex:none}
+.reco-head .rn{font-weight:800;font-size:16.5px}
+.reco-head .rr{font-size:12px;opacity:.85}
+.reco-body{padding:18px 20px;flex:1;display:flex;flex-direction:column;gap:14px}
+.reco-body h5{font-size:13px;font-weight:800;color:var(--ink-3);display:flex;align-items:center;gap:7px}
+.reco-body h5::before{content:"";width:6px;height:6px;border-radius:2px;background:var(--gold)}
+.reco-body ul.clean li{color:var(--ink)}
+.reco-advice{background:var(--gold-soft);border:1px solid #EADFB8;border-radius:10px;padding:11px 14px;font-size:12.8px;color:#6B5418;margin-top:auto}
+
+/* ===== 优先级 ===== */
+.prio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.prio-card{border-radius:var(--radius);padding:18px 20px;border:1px solid var(--line)}
+.prio-card.p1{background:var(--red-soft);border-color:#EFCAC4}
+.prio-card.p2{background:var(--gold-soft);border-color:#EADFB8}
+.prio-card.p3{background:var(--blue-soft);border-color:#CFDCE9}
+.prio-card h4{font-size:14.5px;font-weight:800;margin-bottom:10px}
+.prio-card.p1 h4{color:var(--red-deep)}
+.prio-card.p2 h4{color:#8A5E1D}
+.prio-card.p3 h4{color:var(--blue)}
+.prio-card ol{list-style:none;counter-reset:prio}
+.prio-card li{counter-increment:prio;font-size:13px;color:var(--ink);padding:5px 0 5px 24px;position:relative}
+.prio-card li::before{content:counter(prio);position:absolute;left:0;top:5px;width:17px;height:17px;border-radius:5px;background:rgba(0,0,0,.08);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* ===== 行动清单 ===== */
+.checklist li{display:flex;gap:11px;align-items:flex-start;font-size:13.8px;color:var(--ink);margin-bottom:11px}
+.check-ic{width:19px;height:19px;border-radius:6px;background:var(--ink);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;flex:none;margin-top:2px;font-weight:700}
+.warn{background:var(--red-soft);border:1px solid #EFCAC4;border-radius:10px;padding:12px 15px;font-size:13px;color:#7F3A33;margin-top:10px}
+
+/* ===== 脉脉联网搜索 ===== */
+.mm-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;border:1px solid transparent;transition:background .15s}
+.mm-btn.primary{background:var(--red);color:#fff}
+.mm-btn.primary:hover{background:#8F100C}
+.mm-btn.ghost{background:var(--surface);border-color:var(--line);color:var(--ink-2)}
+.mm-btn.ghost:hover{background:var(--surface-2)}
+.mm-btn:disabled{opacity:.5;cursor:not-allowed}
+.mm-panel{margin-top:24px;display:none}
+.mm-status{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2)}
+.mm-status.online{color:var(--green);border-color:#CDE3D4;background:var(--green-soft)}
+.mm-status .dot{width:7px;height:7px;border-radius:50%;background:#C9B8A0}
+.mm-status.online .dot{background:var(--green)}
+.mm-kw-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.mm-kw{display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:6px 12px;border-radius:9px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink)}
+.mm-kw .go{color:var(--red);font-weight:700;cursor:pointer;white-space:nowrap}
+.mm-kw .go:hover{text-decoration:underline}
+.mm-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.mm-hint{font-size:12.5px;color:var(--ink-3);line-height:1.7;background:var(--gold-soft);border:1px solid #EADFC8;border-radius:10px;padding:11px 14px;margin-top:14px}
+.mm-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.mm-person{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 17px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.mm-person:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(36,28,23,.1);border-color:#D8CBB9}
+.mm-person .mm-name{font-size:16px;font-weight:800}
+.mm-person .mm-pos{font-size:13px;color:var(--ink-2);margin-top:3px}
+.mm-person .mm-meta{font-size:12px;color:var(--ink-3);margin-top:7px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.mm-person .mm-q{display:inline-block;font-size:11px;color:var(--red);background:var(--red-soft);border-radius:5px;padding:1px 8px;margin-top:8px}
+.mm-loading{display:flex;align-items:center;gap:10px;color:var(--ink-2);font-size:13.5px;padding:14px 0;grid-column:1/-1}
+.mm-spinner{width:16px;height:16px;border:2px solid var(--line);border-top-color:var(--red);border-radius:50%;animation:mmspin .8s linear infinite}
+@keyframes mmspin{to{transform:rotate(360deg)}}
+@media (max-width:1024px){.mm-result-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.mm-result-grid{grid-template-columns:1fr}}
+
+/* ===== Footer ===== */
+footer{margin-top:60px;background:var(--ink);color:#B9AFA3;padding:26px 0;font-size:12.5px}
+.footer-inner{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+.footer-inner .f-title{color:#fff;font-weight:700}
+
+/* ===== 返回顶部 ===== */
+#toTop{position:fixed;right:22px;bottom:26px;width:42px;height:42px;border-radius:12px;background:var(--ink);color:#fff;border:none;font-size:16px;cursor:pointer;z-index:70;box-shadow:0 6px 18px rgba(0,0,0,.25);display:none}
+#toTop.show{display:block}
+#toTop:hover{background:var(--red)}
+
+/* ===== 响应式 ===== */
+@media (max-width:1024px){
+  .kpi-band{grid-template-columns:repeat(2,1fr)}
+  .grid-2,.grid-3{grid-template-columns:1fr 1fr}
+  .cand-grid{grid-template-columns:repeat(2,1fr)}
+  .portrait{grid-template-columns:repeat(2,1fr)}
+  .sector-grid{grid-template-columns:repeat(3,1fr)}
+  .org-list{grid-template-columns:repeat(2,1fr)}
+  .prio{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .sec{padding:40px 0 6px}
+  .hero{padding:32px 0 24px}
+  .hero h1{font-size:27px}
+  .nav-meta{display:none}
+  .kpi-band{grid-template-columns:repeat(2,1fr);gap:10px}
+  .kpi .num{font-size:24px}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .cand-grid{grid-template-columns:1fr}
+  .portrait{grid-template-columns:1fr 1fr;gap:10px}
+  .sector-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .org-list{grid-template-columns:1fr}
+  .sec-title{font-size:20px}
+  .modal{padding:24px 20px}
+  .chart-box{padding:16px}
+  .filter-bar{gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 导航 ===== -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="brand-dot">捞</span>人才 mapping 看板</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#s01">01 背景目标</a>
+      <a href="#s02">02 人才版图</a>
+      <a href="#s03">03 人选档案</a>
+      <a href="#s04">04 组织版图</a>
+      <a href="#s05">05 评估矩阵</a>
+      <a href="#s06">06 推荐行动</a>
+      <a href="#s07" style="color: var(--gold);">✨ 07 智能匹配</a>
+    </div>
+    <div class="nav-meta"><span class="dot"></span>内部资料 · 2026-10-12</div>
+  </div>
+</nav>
+
+<!-- ===== Hero 总览 ===== -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="hero-eyebrow">海底捞 · 招聘管理组 · 决策支持看板</span>
+    <h1>品牌营销负责人 <span class="accent">人才 mapping</span></h1>
+    <p class="hero-sub">面向 CMO 级品牌营销一号位的寻访全景：覆盖餐饮 / 食品饮料 / 零售 / 新消费四大行业，13 位目标人选深度画像、评分矩阵与推荐梯队，支撑「先聊后定、精准寻访」。</p>
+    <div class="hero-meta">
+      <span class="chip">目标职位：品牌营销负责人（CMO）</span>
+      <span class="chip">报告日期：2026 年 10 月 12 日</span>
+      <span class="chip">撰写团队：海底捞 · 招聘管理组</span>
+    </div>
+    <div class="kpi-band" id="kpiBand"></div>
+  </div>
+</header>
+
+<!-- ===== 01 背景与目标 ===== -->
+<section class="sec" id="s01">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <div>
+        <div class="sec-title">寻访背景与目标</div>
+        <div class="sec-sub">为什么启动本次寻访 · 需要什么样的人 · 去哪里找</div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card pad">
+        <div class="card-title"><span class="bar"></span>寻访背景</div>
+        <p style="font-size:14px;color:var(--ink-2);margin-bottom:12px">海底捞作为中国餐饮行业龙头企业，<b style="color:var(--ink)">年营收超 420 亿元、日均客流超 110 万人次</b>，正处于品牌升级与多品牌战略的关键期。「红石榴计划」推进内部创业孵化，焰请烤肉铺子等子品牌快速扩张；同时主品牌面临品牌年轻化、场景营销创新等课题。</p>
+        <p style="font-size:14px;color:var(--ink-2)">当前营销体系由营销部长张关平负责场景营销板块，整体品牌战略与整合营销层面仍有升级空间。引入一位具备跨行业视野、品牌操盘经验丰富的 CMO 级别人才，对下一阶段发展具有战略意义。</p>
+      </div>
+      <div class="card pad">
+        <div class="card-title"><span class="bar"></span>目标人选画像</div>
+        <div class="portrait" id="portraitGrid"></div>
+      </div>
+    </div>
+    <div class="card pad" style="margin-top:18px">
+      <div class="card-title"><span class="bar"></span>目标公司版图 <span style="font-size:12.5px;font-weight:400;color:var(--ink-3)">（来自原文档 1.3 画板，共 <b id="sectorCount" class="tnum"></b> 家目标公司）</span></div>
+      <div class="sector-grid" id="sectorGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 行业人才版图 ===== -->
+<section class="sec" id="s02">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <div>
+        <div class="sec-title">行业人才版图</div>
+        <div class="sec-sub">人才供给来源池 · 三大重点行业 · 赛道与挖动难度构成</div>
+      </div>
+    </div>
+
+    <div class="card pad">
+      <div class="card-title"><span class="bar"></span>人才供给结构与主要来源池</div>
+      <div class="table-scroll" style="border:none;box-shadow:none">
+        <table class="matrix" id="poolTable" style="min-width:760px">
+          <thead><tr><th style="text-align:left">来源池</th><th style="text-align:left">典型能力特点</th><th style="text-align:left">迁移到海底捞的强项</th><th style="text-align:left">典型短板</th></tr></thead>
+          <tbody id="poolBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top:18px" id="industryGrid"></div>
+
+    <div class="grid-2" style="margin-top:18px">
+      <div class="chart-box">
+        <div class="chart-title">赛道人选构成 <span class="hint">13 位目标人选的赛道分布</span></div>
+        <div id="chartTrack" class="chart" style="height:260px"></div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">挖动难度分布 <span class="hint">评估预期触达难度</span></div>
+        <div id="chartDiff" class="chart" style="height:260px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 人选档案 ===== -->
+<section class="sec" id="s03">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <div>
+        <div class="sec-title">人选档案</div>
+        <div class="sec-sub">13 位目标人选深度画像 · 点击卡片查看完整信息</div>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <div class="f-group"><span class="f-label">赛道</span>
+        <button class="chip-btn on" data-track="all">全部</button>
+        <button class="chip-btn" data-track="餐饮/茶饮">餐饮/茶饮</button>
+        <button class="chip-btn" data-track="食品饮料">食品饮料</button>
+        <button class="chip-btn" data-track="零售/新消费">零售/新消费</button>
+      </div>
+      <div class="f-group"><span class="f-label">挖动难度</span>
+        <select class="f-select" id="diffFilter">
+          <option value="all">全部难度</option>
+          <option value="中低">中低</option>
+          <option value="中">中</option>
+          <option value="中高">中高</option>
+          <option value="高">高</option>
+          <option value="极高">极高</option>
+        </select>
+      </div>
+      <div class="f-group"><span class="f-label">排序</span>
+        <select class="f-select" id="sortFilter">
+          <option value="score">综合得分（高→低）</option>
+          <option value="rank">文档排名</option>
+          <option value="diff">挖动难度（低→高）</option>
+        </select>
+      </div>
+      <div class="f-group" style="margin-left:auto;align-items:center"><span id="candCount" class="f-label" style="color:var(--ink-2)"></span>
+        <button class="add-btn" id="addCandBtn" type="button"><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg>添加人选</button>
+      </div>
+    </div>
+    <div class="cand-grid" id="candGrid"></div>
+  </div>
+</section>
+
+<!-- ===== 04 组织版图 ===== -->
+<section class="sec" id="s04">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <div>
+        <div class="sec-title">组织人才版图</div>
+        <div class="sec-sub">原文档 6.1 mapping 图重构：目标公司品牌/营销条线核心高管布局</div>
+      </div>
+    </div>
+    <div class="org-root">
+      <div class="r-t">品牌部负责人（海底捞 · 寻访目标）</div>
+    </div>
+    <div class="org-tabs" id="orgTabs"></div>
+    <div class="org-list" id="orgList"></div>
+  </div>
+</section>
+
+<!-- ===== 05 评估矩阵 ===== -->
+<section class="sec" id="s05">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <div>
+        <div class="sec-title">综合评估矩阵</div>
+        <div class="sec-sub">六维能力评分（品牌战略 / 数字化增长 / 连锁运营 / 内容创新 / 全球化 / 文化适配）</div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="chart-box">
+        <div class="chart-title">综合得分排名 <span class="hint">按综合得分排序 · 金色为 Top 3</span></div>
+        <div id="chartScore" class="chart" style="height:480px"></div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Top 候选六维能力雷达 <span class="hint">点击图例可开关对比</span></div>
+        <div id="chartRadar" class="chart" style="height:480px"></div>
+      </div>
+    </div>
+    <div class="card pad" style="margin-top:18px">
+      <div class="card-title"><span class="bar"></span>评分矩阵 <span style="font-size:12.5px;font-weight:400;color:var(--ink-3)">（点击列头排序 · 点击行查看详情）</span></div>
+      <div class="table-scroll">
+        <table class="matrix" id="matrixTable"></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 推荐与行动 ===== -->
+<section class="sec" id="s06">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <div>
+        <div class="sec-title">重点推荐与行动策略</div>
+        <div class="sec-sub">第一/第二梯队人选 · 寻访优先级 · 吸引点与风险 · 下一步行动</div>
+      </div>
+    </div>
+
+    <div class="sec-title" style="font-size:17px;margin-bottom:14px">第一梯队 · 重点推荐</div>
+    <div class="grid-3" id="recoGrid"></div>
+
+    <div class="card pad" style="margin-top:20px">
+      <div class="card-title"><span class="bar"></span>第二梯队 · 持续关注</div>
+      <div class="table-scroll" style="border:none;box-shadow:none">
+        <table class="matrix" id="tier2Table" style="min-width:640px">
+          <thead><tr><th style="text-align:left">人选</th><th style="text-align:left">关注理由</th><th style="text-align:left">接触时机</th></tr></thead>
+          <tbody id="tier2Body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card pad" style="margin-top:20px">
+      <div class="card-title"><span class="bar"></span>寻访优先级建议</div>
+      <div class="prio" id="prioGrid"></div>
+    </div>
+
+    <div class="grid-2" style="margin-top:20px">
+      <div class="card pad">
+        <div class="card-title"><span class="bar" style="background:var(--green)"></span>吸引点梳理</div>
+        <ul class="clean" id="attractList"></ul>
+      </div>
+      <div class="card pad">
+        <div class="card-title"><span class="bar" style="background:var(--gold)"></span>风险提示</div>
+        <ul class="clean" id="riskList" style="list-style:none"></ul>
+      </div>
+    </div>
+
+    <div class="card pad" style="margin-top:20px">
+      <div class="card-title"><span class="bar" style="background:var(--blue)"></span>下一步行动建议</div>
+      <ul class="clean checklist" id="actionList"></ul>
+      <div class="warn">注：以上信息基于公开资料整理，人选职位与履历截至 2026 年 10 月，部分可能存在近期变动；正式寻访前建议通过猎头或人脉核实最新动态。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07 智能人才匹配 ===== -->
+<section class="sec" id="s07">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <div>
+        <div class="sec-title">AI 智能人才匹配</div>
+        <div class="sec-sub">输入岗位 JD，本地人才库智能匹配 + 联网脉脉人才搜索</div>
+      </div>
+    </div>
+
+    <div class="card pad">
+      <div class="card-title"><span class="bar"></span>职位描述 (JD) 输入</div>
+      <textarea id="jdInput" style="width:100%;height:120px;padding:15px;font-family:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);resize:vertical;outline:none;" placeholder="请粘贴岗位 JD，例如：&#10;岗位职责：&#10;1. 负责海底捞品牌升级，制定数字化增长策略。&#10;2. 搭建私域运营体系，主导 IP 联名和内容营销，打造爆款。&#10;3. 具备全球化视野，操盘过万店加盟体系的品牌建设。&#10;4. 有麦当劳、星巴克等连锁餐饮背景优先。"></textarea>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:14px;">
+        <span style="font-size:12.5px;color:var(--ink-3);">支持识别：行业、技能关键词、目标公司、岗位要求等</span>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="mm-btn primary" id="maimaiBtn" type="button">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-13h-2v6l5.25 3.15L17 12l-4-2.4V7z"/></svg>
+            智能匹配 + 脉脉搜索
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="matchResults" style="display:none; margin-top:24px;">
+      <div style="font-size:16px; font-weight:800; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+        <span class="bar" style="width:4px;height:16px;border-radius:2px;background:var(--green);display:inline-block;"></span>
+        本地库匹配结果排行 (Top 3)
+      </div>
+      <div class="cand-grid" id="matchGrid"></div>
+    </div>
+
+    <!-- ===== 脉脉联网搜索面板 ===== -->
+    <div id="maimaiPanel" class="mm-panel">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div style="font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px;">
+          <span class="bar" style="width:4px;height:16px;border-radius:2px;background:var(--red);display:inline-block;"></span>
+          脉脉人才搜索
+        </div>
+        <span class="mm-status" id="mmStatus"><span class="dot"></span><span id="mmStatusText">检测连接中…</span></span>
+      </div>
+
+      <div style="font-size:13px;color:var(--ink-2);margin-top:12px;">已从 JD 解析出以下搜索词。点击「在脉脉打开 ↗」：本地桥在线时会自动打开脉脉并填入关键词；桥离线时则复制关键词并跳转。也可点「全部打开脉脉搜索」一次处理全部关键词：</div>
+      <div class="mm-kw-list" id="mmKwList"></div>
+
+      <div class="mm-actions">
+        <button class="mm-btn primary" id="mmAutoBtn" type="button" disabled>
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M19.9 12.6l-5.3-1.2V7.8l2.9-3.6-1.5-1.2-3.3 4.1a1.5 1.5 0 0 0-.4.9v4.2l-2.1 5.9-1.7-.6 1.9-5.4H8.3L6.6 18l-1.7-.6 2-5.6 1.5.5 1.3-3.5H6.1V7.3h2.1V5.6l-1.8-.2.2-1.9 3.4.4a1.5 1.5 0 0 1 1.3 1.5v2.2l1.6.4 2.9-4 1.5 1.1-2.6 3.6v3.2l4.4 1 .1 1.7z"/></svg>
+          自动抓取结果（需本地桥）
+        </button>
+        <button class="mm-btn ghost" id="mmAllOpenBtn" type="button">全部打开脉脉搜索</button>
+      </div>
+
+      <div class="mm-hint" id="mmHint"></div>
+      <div class="mm-result-grid" id="mmResultGrid"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="f-title">品牌营销负责人 · 人才 mapping 看板</div>
+    <div>数据来源：海底捞招聘管理组《品牌营销负责人-人才mapping》2026-10-12 · 内部资料，请勿外传</div>
+  </div>
+</footer>
+
+<button id="toTop" title="回到顶部">↑</button>
+
+<!-- ===== 弹层：人选详情 ===== -->
+<div class="modal-mask" id="modalMask">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ===== 弹层：添加候选人 ===== -->
+<div class="modal-mask" id="formMask">
+  <div class="modal form-modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="formClose" aria-label="关闭">×</button>
+    <div style="font-size:20px;font-weight:900">添加候选人</div>
+    <p style="font-size:12.5px;color:var(--ink-3);margin-top:4px">新增人选会自动保存到本机浏览器，下次打开看板仍然保留，并同步计入上方统计与图表。</p>
+    <form id="candForm" class="cand-form" novalidate>
+      <div class="f-field"><label>姓名 <span class="req">*</span></label><input id="fName" autocomplete="off"></div>
+      <div class="f-field"><label>现任公司 <span class="req">*</span></label><input id="fCompany" autocomplete="off"></div>
+      <div class="f-field"><label>职位</label><input id="fTitle" placeholder="如：首席营销官（CMO）"></div>
+      <div class="f-field"><label>赛道</label><select id="fTrack"><option>餐饮/茶饮</option><option>食品饮料</option><option>零售/新消费</option></select></div>
+      <div class="f-field"><label>所在城市</label><input id="fLoc" placeholder="如：上海"></div>
+      <div class="f-field"><label>挖动难度</label><select id="fDiff"><option>中低</option><option>中</option><option selected>中高</option><option>高</option><option>极高</option></select></div>
+      <div class="f-field"><label>综合得分（0-10）</label><input id="fScore" type="number" min="0" max="10" step="0.1" value="7.5"></div>
+      <div class="f-field"><label>匹配度（1-5 星）</label><select id="fMatch"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option></select></div>
+      <div class="f-field"><label>梯队</label><select id="fTier"><option value="">不设梯队</option><option value="1">第一梯队</option><option value="2">第二梯队</option></select></div>
+      <div class="f-field"><label>标签（逗号分隔）</label><input id="fTags" placeholder="如：出海经验,爆品打造"></div>
+      <div class="f-field full"><label>核心履历</label><textarea id="fCareer" placeholder="历任公司与职位、年限等"></textarea></div>
+      <div class="f-field full"><label>代表战绩</label><textarea id="fAchieve" placeholder="关键项目与成果"></textarea></div>
+      <div class="f-field full"><label>核心能力</label><textarea id="fAbilities" placeholder="能力关键词"></textarea></div>
+      <div class="f-field full"><label>优势</label><textarea id="fPros"></textarea></div>
+      <div class="f-field full"><label>风险 / 待核实点</label><textarea id="fRisks"></textarea></div>
+      <div class="f-field full"><label>六维能力评分（0-10）</label>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px" id="dimInputs"></div>
+      </div>
+      <div class="f-note">提示：新增数据仅保存在本机浏览器（localStorage）。分享链接为发布版，不含本地新增内容；如需让分享对象也看到新增人选，请把信息补进原文档后让我重新发布，或告知我更新发布版。</div>
+      <div class="form-actions">
+        <button type="button" class="btn-ghost" id="formCancel">取消</button>
+        <button type="submit" class="btn-primary">保存并添加</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script>
+/* ================= 数据（来源：海底捞招聘管理组《品牌营销负责人-人才mapping》2026-10-12） ================= */
+const CANDIDATES = [
+{id:1,name:"杨飞",company:"瑞幸咖啡",title:"首席增长官（CGO）",track:"餐饮/茶饮",loc:"北京/厦门",difficulty:"极高",match:4,score:8.4,docRank:2,tier:null,
+ tags:["流量池思维","品效合一","万店操盘"],
+ career:"神州优车集团CMO → 瑞幸咖啡CMO → 瑞幸CGO，营销从业20+年",
+ achievements:"① 瑞幸咖啡从0到万店的营销操盘手，「流量池思维」提出者与实践者；② 主导瑞幸「补贴战→品效合一→联名爆款」全周期营销；③ 神州专车「Beat U」「Love U」等经典案例",
+ abilities:"品效合一、数字化增长、流量运营、爆款产品营销、代言人事件化",
+ book:"《流量池》",
+ pros:"万店级连锁品牌操盘经验，数字化营销天花板，懂加盟与下沉市场",
+ risks:"瑞幸体系内地位稳固，挖动难度极大；风格偏「狼性」，需评估文化适配",
+ dims:{品牌战略:8.5,数字化增长:10.0,连锁运营:9.5,内容创新:8.0,全球化:6.5,文化适配:8.0}},
+{id:2,name:"杨振",company:"星巴克中国",title:"首席增长官（CGO）",track:"餐饮/茶饮",loc:"上海",difficulty:"高",match:4,score:8.5,docRank:3,tier:null,
+ tags:["内容中台","快消+互联网","数字化"],
+ career:"宝洁品牌经理 → 百事市场总监 → 阿里文娱（优酷高级副总裁）→ 特赞总裁 → VMLY&R资深副总裁 → 星巴克中国CGO（2024年11月上任，星巴克中国首位CGO）",
+ achievements:"① 星巴克中国「内容中台」理念首倡者，推动数字化营销转型；② 主导品牌定制短剧《我在古代开星巴克》；③ 宝洁/百事快消品牌基建功底 + 阿里文娱数字化内容运营双重背景",
+ abilities:"内容营销、数字化增长、品牌创新、快消品牌体系建设",
+ pros:"快消+互联网+咖啡三重背景，内容中台理念先进，品牌高端化经验丰富",
+ risks:"2024年底才加入星巴克，任期较短；偏一线城市高端品牌调性，下沉市场经验待验证",
+ dims:{品牌战略:9.0,数字化增长:9.0,连锁运营:8.5,内容创新:9.5,全球化:8.0,文化适配:7.0}},
+{id:3,name:"顿贤",company:"古茗茶饮",title:"首席营销官（CMO）",track:"餐饮/茶饮",loc:"杭州/台州",difficulty:"高",match:4,score:8.1,docRank:5,tier:2,
+ tags:["品牌原生派","IP联名","下沉市场"],
+ career:"古茗「老人」，多年来极少公开露面，品牌原生派营销人",
+ achievements:"① 主导「吴彦祖咖啡」营销刷屏，单条播放量破千万；② 「书法杯」「天官赐福IP联名」等爆款项目接连出圈；③ 支撑古茗万店规模的品牌建设",
+ abilities:"内容创意、IP联名、年轻化营销、品牌原生生长",
+ pros:"茶饮行业原生派，深刻理解下沉市场年轻人，万店品牌操盘经验",
+ risks:"公开信息少，需进一步背调；古茗体系内忠诚度高",
+ dims:{品牌战略:8.0,数字化增长:8.0,连锁运营:9.0,内容创新:9.5,全球化:6.0,文化适配:8.0}},
+{id:4,name:"王晓东",company:"喜茶",title:"品牌副总裁",track:"餐饮/茶饮",loc:"深圳",difficulty:"中",match:3,score:7.8,docRank:8,tier:2,
+ tags:["高端化","空间体验","潮牌跨界"],
+ career:"万博宣伟执行副总裁/首席创意官 → GENTLE MONSTER中国CEO → 创业（生活方式空间EN MM CO）→ 喜茶品牌副总裁（2025年7月上任）",
+ achievements:"① GENTLE MONSTER中国区操盘，主导SKP-S、HAUS SHANGHAI等高话题度空间项目；② 引入香氛品牌Tamburins和甜品品牌Nudake；③ 推动喜茶品牌高端化转型，「禅意」「东方」美学主题",
+ abilities:"品牌高端化、空间体验营销、奢侈品/潮牌跨界、事件营销",
+ pros:"品牌高端化与设计感打造能力极强，多行业跨界视野",
+ risks:"偏高端/潮牌路线，与海底捞大众餐饮定位有差距；2025年刚上任，稳定性待观察",
+ dims:{品牌战略:9.0,数字化增长:7.0,连锁运营:7.5,内容创新:9.0,全球化:7.5,文化适配:6.5}},
+{id:5,name:"Eugene Lee",company:"霸王茶姬",title:"亚太区副总裁兼CMO",track:"餐饮/茶饮",loc:"新加坡",difficulty:"中",match:4,score:8.3,docRank:4,tier:1,
+ tags:["麦当劳系","全球化","特许经营"],
+ career:"麦当劳工作15年，从马来西亚市场→亚洲区CMO→国际首席营销官 → 霸王茶姬亚太区VP兼CMO（2025年4月上任）",
+ achievements:"① 麦当劳国际CMO，管理全球80个特许经营市场16,000+家餐厅，年营收超330亿美元；② 主导麦当劳与BTS防弹少年团联名等亚洲区域营销战役；③ 霸王茶姬国际化品牌建设",
+ abilities:"全球化品牌运营、多市场本地化策略、特许经营体系营销、品牌战略",
+ pros:"麦当劳体系出身，全球化+特许经营+万店品牌三重经验，高度匹配海底捞出海与加盟战略",
+ risks:"新加坡办公，工作地点需协调；文化背景与本土团队融合需关注",
+ dims:{品牌战略:9.0,数字化增长:7.5,连锁运营:9.5,内容创新:7.5,全球化:9.5,文化适配:6.5}},
+{id:6,name:"须聪",company:"京东（前麦当劳中国）",title:"高管（前麦当劳中国CMO）",track:"餐饮/茶饮",loc:"上海",difficulty:"高",match:3,score:7.8,docRank:13,tier:null,
+ tags:["麦当劳中国","本土化营销"],
+ career:"麦当劳中国CMO，多年操盘麦当劳中国市场营销（2025年从麦当劳中国加入京东）",
+ achievements:"麦当劳中国品牌本土化运营、金拱门八周年品牌实践、王楚钦代言等",
+ abilities:"连锁餐饮品牌营销、本土化运营、代言人营销",
+ pros:"麦当劳中国体系完整经验，本土化营销能力强",
+ risks:"刚加入京东，短期内挖动难度大；组织版图另标注其已退休，需核实最新状态",
+ dims:{品牌战略:8.0,数字化增长:7.5,连锁运营:9.0,内容创新:7.5,全球化:7.0,文化适配:7.5}},
+{id:7,name:"范军",company:"元气森林",title:"营销负责人",track:"食品饮料",loc:"北京",difficulty:"中高",match:4,score:7.9,docRank:6,tier:1,
+ tags:["新消费","渠道数字化","多品类"],
+ career:"元气森林核心营销负责人，伴随公司从创业到百亿规模",
+ achievements:"① 元气森林全渠道营销体系搭建，合作网点突破128万家；② 「方舟」项目数字化渠道赋能体系；③ 气泡水、电解质水、冰茶等多品类营销操盘",
+ abilities:"渠道营销、数字化赋能、经销商体系管理、多品类品牌运营",
+ pros:"新消费品牌从0到百亿全周期经验，渠道+品牌双轮驱动，数字化程度高",
+ risks:"元气森林处于上升期，挖动难度需评估；偏饮料品类，餐饮运营经验相对少",
+ dims:{品牌战略:8.0,数字化增长:9.0,连锁运营:8.5,内容创新:7.5,全球化:7.0,文化适配:7.5}},
+{id:8,name:"赵兴继",company:"蒙牛集团",title:"首席营销官（CMO）",track:"食品饮料",loc:"北京/呼和浩特",difficulty:"中",match:3,score:7.7,docRank:9,tier:2,
+ tags:["大品牌建设","体育营销","奥运"],
+ career:"蒙牛集团营销体系核心负责人",
+ achievements:"① 蒙牛奥林匹克全球合作伙伴品牌运营；② 「天生要强」品牌主张持续落地；③ 奥运营销、体育营销体系化建设",
+ abilities:"大品牌建设、体育营销、奥运营销、品牌国际化",
+ pros:"千亿级快消品牌CMO，品牌基建能力强，体育营销资源丰富",
+ risks:"传统快消体系出身，数字化与新消费玩法相对保守",
+ dims:{品牌战略:9.0,数字化增长:6.5,连锁运营:8.0,内容创新:7.0,全球化:8.0,文化适配:7.5}},
+{id:9,name:"黄国慧（Kok Hwee Ng）",company:"佳沛（Zespri）",title:"首席营销官（CMO）",track:"食品饮料",loc:"新西兰/新加坡",difficulty:"中低",match:3,score:7.6,docRank:12,tier:null,
+ tags:["全球品牌战略","品牌焕新"],
+ career:"佳沛工作8年+，2025年升任CMO，20年品牌营销经验",
+ achievements:"① 佳沛品牌焕新项目；② 2035战略制定与营销落地；③ 从区域营销到全球CMO的完整成长路径",
+ abilities:"全球品牌战略、品牌焕新、长期品牌建设",
+ pros:"国际品牌视野，长期主义品牌建设经验",
+ risks:"水果品类相对小众，餐饮/快消全品类经验不足",
+ dims:{品牌战略:8.5,数字化增长:7.0,连锁运营:7.0,内容创新:7.5,全球化:9.0,文化适配:6.5}},
+{id:10,name:"果小",company:"珀莱雅股份",title:"首席营销官（CMO）",track:"零售/新消费",loc:"杭州",difficulty:"中高",match:5,score:8.4,docRank:1,tier:1,
+ tags:["品牌升级","赛道定义","跨品类"],
+ career:"阿芙 → 泡泡玛特CMO → 蕉下市场负责人 → 珀莱雅CMO（2025年8月上任）",
+ achievements:"① 泡泡玛特CMO期间，主导将小众艺术玩具升级成潮流玩具赛道，打造中国第一潮玩品牌；② 蕉下期间，主导品牌升级三部曲，推动从防晒到户外赛道升级；③ 珀莱雅品牌营销体系升级与全球化布局",
+ abilities:"品牌升级、赛道定义、私域运营、跨品类品牌操盘、全球化",
+ pros:"跨行业（潮玩/户外/美妆）品牌升级经验极其丰富，擅长定义新品类、打造品牌势能，从0到1从1到N全周期经验",
+ risks:"2025年8月刚上任珀莱雅CMO，短期内挖动需评估；美妆行业背景，餐饮适配性需验证",
+ dims:{品牌战略:9.5,数字化增长:8.5,连锁运营:7.0,内容创新:9.5,全球化:8.5,文化适配:7.5}},
+{id:11,name:"陈晓芸",company:"泡泡玛特",title:"国际集团副总裁",track:"零售/新消费",loc:"北京",difficulty:"极高",match:4,score:8.3,docRank:7,tier:2,
+ tags:["IP全球化","文化出海","全球渠道"],
+ career:"泡泡玛特核心高管，负责IP全球化运营",
+ achievements:"① 泡泡玛特全球化运营，海外营收同比增长200%+，美洲增长1142%；② 13个IP收入过亿的全球化运营；③ 全球550+直营门店、2500+机器人商店的渠道建设；④ Labubu等IP的全球爆火操盘",
+ abilities:"IP全球化运营、文化适配与本地化、全球渠道建设、品牌出海",
+ pros:"中国品牌全球化运营标杆案例，文化出海与本地化运营能力极强",
+ risks:"潮玩行业背景，餐饮品类经验为零；泡泡玛特处于高速发展期，挖动难度大",
+ dims:{品牌战略:9.0,数字化增长:8.0,连锁运营:8.5,内容创新:8.5,全球化:9.5,文化适配:6.5}},
+{id:12,name:"刘晓彬",company:"名创优品",title:"首席营销官（CMO）",track:"零售/新消费",loc:"广州",difficulty:"中",match:3,score:7.8,docRank:10,tier:null,
+ tags:["品牌升级","IP联名","全球零售"],
+ career:"名创优品核心营销负责人，伴随公司从十元店到品牌升级转型",
+ achievements:"① 名创优品品牌升级战略营销落地；② 超级IP联名体系搭建；③ 全球门店网络的品牌营销支持",
+ abilities:"品牌升级、IP联名、零售品牌营销、全球化",
+ pros:"零售品牌升级经验丰富，万店级全球品牌营销体系",
+ risks:"名创优品品牌定位偏大众低价，与海底捞品牌调性有差异",
+ dims:{品牌战略:8.0,数字化增长:7.5,连锁运营:8.5,内容创新:7.5,全球化:8.0,文化适配:7.0}},
+{id:13,name:"之恒",company:"小红书",title:"首席营销官（CMO）",track:"零售/新消费",loc:"上海",difficulty:"高",match:3,score:7.5,docRank:11,tier:null,
+ tags:["内容营销","种草经济","用户洞察"],
+ career:"小红书商业化核心负责人",
+ achievements:"① 小红书「种草进入效果化时代」战略提出与落地；② 种草直达、一方数据等商业化产品体系；③ 每日900万+笔记的内容生态运营",
+ abilities:"内容营销、种草经济、用户洞察、效果营销、KOL生态",
+ pros:"内容营销与种草经济天花板级理解，用户洞察能力极强",
+ risks:"平台方背景，品牌方操盘经验相对少；互联网公司文化与餐饮差异大",
+ dims:{品牌战略:8.0,数字化增长:9.0,连锁运营:5.5,内容创新:9.5,全球化:7.0,文化适配:6.0}}
+];
+const DIM_KEYS = ["品牌战略","数字化增长","连锁运营","内容创新","全球化","文化适配"];
+const TRACK_COLOR = {"餐饮/茶饮":"#B1130F","食品饮料":"#2E7D4F","零售/新消费":"#2F5E8C"};
+const DIFF_COLOR = {"中低":"#2E7D4F","中":"#2F5E8C","中高":"#A97E2F","高":"#C0563B","极高":"#B1130F"};
+const DIFF_ORDER = {"中低":1,"中":2,"中高":3,"高":4,"极高":5};
+
+/* 来源池 */
+const POOLS = [
+ ["跨国外餐中国区","体系化最高，营销、会员、数字化分工齐整","迁移成本最低，方法论可直接复用","多为区域执行角色，缺终审权；本地生活原生感弱"],
+ ["快消外企品牌与产品营销","品牌基本功最扎实，擅长新品与产品线管理","品牌资产与产品线能力","对门店与餐饮毛利缺乏体感"],
+ ["互联网／电商增长、私域、会员","增长、私域、会员最强，数据驱动","可直接改造会员与私域经营","易出现「只会投流、不会做品牌」"],
+ ["同业餐饮","落地最实，懂门店与供应链节奏","组织与文化适配最快","品牌高度与体系搭建经验不足"],
+ ["新消费品牌","内容力与话题能力突出","可补内容与 IP 短板","P&L 与规模化经营未验证"],
+ ["咨询／广告公司一号位","策略与洞察能力强","本轮不推荐（未查证到可靠的中国区落地案例）","不作为推荐池"]
+];
+
+/* 三大行业 */
+const INDUSTRIES = [
+ {name:"餐饮/茶饮",color:"#B1130F",feat:"高频消费、强运营驱动、品牌与产品高度绑定、数字化程度高",
+  adv:["熟悉连锁体系的品牌打法，懂门店端落地","产品营销经验丰富，擅长爆款打造","数字化营销能力强（私域、会员、App运营）","对下沉市场和加盟模式有深刻理解"],
+  cos:"瑞幸、星巴克中国、喜茶、霸王茶姬、蜜雪冰城、古茗、麦当劳中国"},
+ {name:"食品饮料",color:"#2E7D4F",feat:"大快消逻辑、渠道为王、品牌建设周期长、供应链驱动",
+  adv:["品牌基建功底扎实，体系化能力强","渠道营销与终端生动化经验丰富","熟悉经销商体系与价格带管理","大预算、大传播战役操盘经验"],
+  cos:"农夫山泉、元气森林、蒙牛、伊利、康师傅、统一"},
+ {name:"零售/新消费",color:"#2F5E8C",feat:"品类创新驱动、DTC模式、内容营销为王、迭代速度快",
+  adv:["内容营销与社交媒体玩法娴熟","用户洞察与产品创新联动能力强","品牌从0到1/从1到N的全周期经验","全球化品牌运营视野"],
+  cos:"泡泡玛特、名创优品、珀莱雅、花西子、完美日记"}
+];
+
+/* 目标公司版图（原文档 1.3 画板） */
+const SECTORS = [
+ {name:"连锁餐饮",cos:[
+   {n:"百胜中国",subs:"肯德基/必胜客/小肥羊/黄记煌/Lavazza/塔可钟/肯悦咖啡/肯律轻食/必胜汉堡/必胜炙烤串"},
+   {n:"麦当劳"},{n:"达美乐"},{n:"Shake Shack"},{n:"汉堡王"},
+   {n:"顶巧餐饮集团",subs:"德克士/康师傅私房牛肉面/贝瑞咖啡/康师傅全民面馆"},
+   {n:"巴奴毛肚火锅"},{n:"呷哺呷哺（含凑凑）"},{n:"九毛九（太二）"},{n:"捞王锅物料理"},{n:"西贝莜面村"}]},
+ {name:"新零售精品生鲜",cos:[
+   {n:"盒马",subs:"盒马鲜生/超盒算NB"},{n:"山姆会员店"},{n:"奥乐齐"},{n:"叮咚买菜"},{n:"永辉超市"},{n:"朴朴超市"}]},
+ {name:"精品咖啡",cos:[{n:"星巴克"},{n:"Blue Bottle（蓝瓶咖啡）"},{n:"Grid Coffee"},{n:"Manner"}]},
+ {name:"茶饮",cos:[{n:"喜茶"},{n:"霸王茶姬"},{n:"古茗"},{n:"奈雪"},{n:"茶话弄"},{n:"瑞幸"},{n:"诺瓦"},{n:"M-stand"}]},
+ {name:"快消零售 · 全球市场",cos:[
+   {n:"宝洁",subs:"海飞丝/飘柔/潘婷/沙宣/SK-II/OLAY/舒肤佳/佳洁士/欧乐-B/护舒宝/帮宝适/汰渍/碧浪/吉列/博朗"},
+   {n:"联合利华",subs:"多芬/凡士林/清扬/旁氏/AHC/Hourglass/力士/中华/奥妙/金纺/家乐等"},
+   {n:"雀巢",subs:"Nescafé/Nespresso/星巴克授权/普瑞纳/冠能/能恩/嘉宝/美极/KitKat/徐福记/巴黎水/圣培露等"},
+   {n:"百事",subs:"百事可乐/美年达/七喜/佳得乐/纯水乐/果缤纷/维动力/乐事/多力多滋/奇多/桂格麦片/百草味"},
+   {n:"欧莱雅",subs:"珀莱雅/悦芙媞/科瑞肤/圣歌兰/彩棠/原色波塔/花知晓/Off&Relax/惊时等"},
+   {n:"可口可乐",subs:"可口可乐/雪碧/芬达/美汁源/阳光/Costa咖世家/淳茶舍/纯悦/魔爪(授权)/植白说"}]},
+ {name:"快消零售 · 国内市场",cos:[{n:"伊利"},{n:"蒙牛"},{n:"农夫山泉"},{n:"娃哈哈"}]},
+ {name:"互联网本地生活",cos:[{n:"小红书",subs:"品牌营销团队/商业化团队"},{n:"抖音生活服务"},{n:"美团"}]},
+ {name:"新消费/食品饮料",cos:[{n:"元气森林"},{n:"认养一头牛"},{n:"空刻意面"},{n:"小仙炖"},{n:"农夫山泉",subs:"东方树叶/茶π"},{n:"Babycare"}]}
+];
+
+/* 组织版图（原文档 6.1 mapping 图画板） */
+const ORG = [
+ {track:"餐饮/茶饮",cos:[
+  {n:"瑞幸咖啡",execs:[["黎辉","董事长"],["YIHUI ZHANG","副总裁"],["曹文宝","高级副总裁"],["郭谨一","CEO"],["杨茂林","总经理"],["马修民","即享业务负责人"],["冯良风","高级运营总监"],["段旭同Danny","内容电商负责人"],["杨飞","CGO",1],["李瑞斯","市场VP"]]},
+  {n:"星巴克中国",execs:[["王静瑛","CEO"],["杨振","CGO",1],["Aglaia Shen","会员营销总监"],["郑锋","高级运营总监"],["孙慧","运营总监"],["郑兆邦","营销总监"],["薛鹏","品牌总监"],["ginger","微信平台负责人"],["刘文娟","联席CEO"]]},
+  {n:"喜茶",execs:[["王晓东","品牌副总裁",1],["姚璐","品牌总经理"],["丸阿阿","品牌总监"],["程浩","公共传播中心总经理"],["Kim","用户营销总监"]]},
+  {n:"霸王茶姬",execs:[["尹登峰","全球COO、中国区CEO"],["徐驰","总经理"],["谢明珂","副总经理"],["郑翰林","副总经理"],["陶维海","总经理"],["Eugene Lee","亚太区VP兼CMO",1],["刘孙媛","亚太品牌负责人"]]},
+  {n:"百胜中国",execs:[["陈琦","企划部总经理"],["于惠新","CMO"],["杨韵","CMO"]]},
+  {n:"麦当劳",execs:[["张家茵","CEO"],["文迪","数字化营销及电商副总裁"],["Elliott","会员营销/社交电商总监"],["maggie","饮品和麦咖啡业务负责人"],["何亚彬","CGO"],["林慧蓉","COO"]]},
+  {n:"奈雪的茶",execs:[["乔蒂","CTO"],["黄之曦","CMO"]]},
+  {n:"古茗茶饮",execs:[["顿贤","CMO",1]]},
+  {n:"京东（前麦当劳中国）",execs:[["须聪","前CGO（退休）",1]]},
+  {n:"沪上阿姨",execs:[["严一清","副总裁/全球市场CEO"]]},
+  {n:"百威英博",execs:[["汤卓","资深市场总监"],["刘力嘉","高级总监"],["Colin Zhang","数据与数字营销高级总监（中国区）"]]}
+ ]},
+ {track:"食品饮料",cos:[
+  {n:"元气森林",execs:[["范军","营销负责人",1]]},
+  {n:"蒙牛集团",execs:[["赵兴继","CMO",1]]},
+  {n:"佳沛（Zespri）",execs:[["黄国慧","CMO",1]]},
+  {n:"伊利集团",execs:[["武超","数字营销与品牌公关负责人"]]},
+  {n:"绝味食品",execs:[["游甜子","品牌营销总监"]]}
+ ]},
+ {track:"零售/新消费",cos:[
+  {n:"宝洁",execs:[["Benjamin","营销副总裁"],["王睿聪","品牌总监"],["张阳","市场品牌总监"],["袁其俊","品牌及销售总监"],["叮小小","市场营销总监"],["Janet Cai","品牌总监"],["梁朝辉","CMO"],["唐吟","佳洁士品牌负责人"],["赵瑜","护舒宝品牌资深总监"],["Shelly","电商副总裁"],["唐旭","整合营销总监"],["张阳","营销总监"]]},
+  {n:"沃尔玛",execs:[["朱晓静","沃尔玛中国总裁及首席执行官"],["张青","CMO"],["彭子轩","高级市场总监"],["宋旭昌","前副总裁兼市场营销负责人"],["刘鹏","山姆会员店业态总裁"],["郑硕怀","高级副总裁、兼任山姆会员店COO"]]},
+  {n:"珀莱雅",execs:[["果小","CMO",1],["叶伟","CMO/VP"],["黄颖","品牌主理人"]]},
+  {n:"泡泡玛特",execs:[["陈晓芸","国际集团副总裁",1]]},
+  {n:"名创优品",execs:[["刘晓彬","CMO",1]]},
+  {n:"小红书",execs:[["之恒","CMO",1]]}
+ ]}
+];
+
+/* 推荐与策略 */
+const RECOS = [
+ {rank:1,label:"第一推荐",name:"果小",co:"珀莱雅 CMO",cls:"r1",
+  reasons:["品牌升级专家：泡泡玛特（潮玩赛道定义）→ 蕉下（防晒→户外升级）→ 珀莱雅（美妆全球化），三次成功的品牌升级/赛道跃迁经验","跨品类能力：潮玩、户外、美妆三大差异品类均操盘成功，证明品牌方法论的可迁移性","全球化视野：珀莱雅正在推进H股上市与全球化布局，果小深度参与","年龄与势能：处于职业上升期，有冲劲和创造力"],
+  fits:["海底捞正处于品牌升级与多品牌战略期，需要擅长品牌势能打造的操盘手","「赛道定义」能力可帮助在火锅之外定义新品类（如焰请烤肉等子品牌）","私域运营经验与海底捞1.8亿会员体系可形成联动"],
+  advice:"2025年8月刚上任珀莱雅CMO，建议先建立联系、保持沟通，观察其在珀莱雅的发展情况，6-12个月后再评估挖动可能性。"},
+ {rank:2,label:"第二推荐",name:"Eugene Lee",co:"霸王茶姬 亚太区VP兼CMO",cls:"r2",
+  reasons:["麦当劳体系15年：从区域到亚洲到全球的完整成长路径，体系化能力极强","特许经营专家：管理80个特许经营市场，与海底捞加盟战略高度匹配","国际化视野：霸王茶姬正全力推进全球化，与海底捞出海战略同频","营销理念先进：「洞察至上」而非「想法至上」，强调消费者深度理解"],
+  fits:["海底捞正在推进加盟业务和出海战略，Eugene Lee在这两方面都有顶级经验","万店级品牌的营销体系建设能力","自动化+人性化的品牌运营理念与海底捞「双手改变命运」价值观有共通之处"],
+  advice:"新加坡办公，需确认工作地点意愿；可通过猎头或行业人脉触达。"},
+ {rank:3,label:"第三推荐",name:"范军",co:"元气森林 营销负责人",cls:"r3",
+  reasons:["全渠道营销：从线下经销商到数字化赋能的完整体系，128万+合作网点","新消费打法：元气森林是新消费品牌的标杆案例，从0到百亿的完整经验","渠道数字化：「方舟」项目、五码合一等数字化工具赋能渠道的经验","多品类运营：气泡水、电解质水、冰茶、养生水等多品类营销经验"],
+  fits:["海底捞「红石榴计划」多品牌战略需要渠道复用与数字化赋能能力","元气森林的下沉市场经验与海底捞加盟扩张方向一致","数字化营销工具可直接复用提升海底捞门店营销效率"],
+  advice:"元气森林处于上升期但近期管理层有调整，可关注动态适时接触。"}
+];
+const TIER2 = [
+ ["顿贤（古茗CMO）","茶饮行业原生派，下沉市场年轻人洞察深刻，万店品牌操盘","古茗上市后或有变动时"],
+ ["王晓东（喜茶品牌副总裁）","品牌高端化与空间营销能力极强，可关注其在喜茶的融合情况","6-12个月后评估稳定性"],
+ ["陈晓芸（泡泡玛特副总裁）","全球化运营天花板，但行业跨度大","海底捞明确出海战略优先级时重点接触"],
+ ["赵兴继（蒙牛CMO）","大品牌基建与体育营销资源","需强化品牌基础建设阶段考虑"]
+];
+const PRIOS = [
+ {cls:"p1",t:"第一优先级 · 立即启动",items:["Eugene Lee（霸王茶姬）— 匹配度高、挖动难度中等","范军（元气森林）— 匹配度高、行业经验可迁移","果小（珀莱雅）— 建立联系、长期跟踪"]},
+ {cls:"p2",t:"第二优先级 · 持续关注",items:["顿贤（古茗）— 等待上市窗口期","王晓东（喜茶）— 观察融合情况","须聪（京东/前麦当劳）— 评估京东适应情况"]},
+ {cls:"p3",t:"第三优先级 · 战略储备",items:["陈晓芸（泡泡玛特）— 出海战略明确时重点接触","赵兴继（蒙牛）— 品牌基建升级阶段考虑"]}
+];
+const ATTRACTIONS = [
+ ["平台规模","年营收427亿、1368家门店、1.8亿会员，足够大的施展空间"],
+ ["多品牌战略","「红石榴计划」内部创业平台，有机会从0打造新品牌"],
+ ["出海机遇","特海国际（海外业务）独立上市，全球化空间广阔"],
+ ["加盟扩张","加盟业务刚启动，万店目标下的品牌体系建设机会"],
+ ["企业文化","「双手改变命运」的价值观，强执行力文化"]
+];
+const RISKS = [
+ "餐饮行业CMO人才供给有限：头部餐饮品牌的营销一号位数量稀少，且多为内部培养",
+ "跨行业适配风险：快消/新消费背景的人才进入餐饮行业需要适应期，尤其是门店端运营理解",
+ "文化融合挑战：海底捞强执行力、结果导向的文化与互联网/新消费公司差异较大",
+ "薪酬竞争力：海底捞薪酬体系相对传统，与互联网/新消费品牌相比可能缺乏竞争力"
+];
+const ACTIONS = [
+ "明确JD：与业务方进一步确认CMO的职责边界、汇报关系、核心KPI",
+ "启动猎头：建议同时启动2-3家头部猎头公司，覆盖不同行业人脉",
+ "人脉触达：通过行业峰会、营销社群等渠道建立初步联系",
+ "先聊后定：建议先以「行业交流」名义接触几位目标人选，了解市场情况后再精准定位"
+];
+</script>
+
+<script>
+/* ================= 渲染与交互 ================= */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+/* ---- KPI ---- */
+function renderKPI(){
+  const top = [...allCands()].sort((a,b)=>b.score-a.score)[0];
+  const compCount = SECTORS.reduce((s,sec)=>s+sec.cos.length,0);
+  $("#kpiBand").innerHTML = [
+    {n:allCands().length,lab:"位目标人选",d:"三大赛道全覆盖"},
+    {n:3,lab:"个赛道",d:"餐饮 / 食品饮料 / 零售新消费"},
+    {n:compCount,lab:"家目标公司",d:"七大板块人才版图"},
+    {n:top.score.toFixed(1),lab:"最高综合得分",d:top.name+"（"+top.company+"）"}
+  ].map(k=>`<div class="kpi"><div class="num tnum">${k.n}<small>${k.lab}</small></div><div class="lab">${k.d}</div></div>`).join("");
+}
+/* ---- 目标画像 ---- */
+const PORTRAIT = [
+ ["行业背景","餐饮/食品饮料/零售/新消费头部企业背景，万店级连锁品牌操盘经验优先"],
+ ["能力结构","品牌战略 + 整合营销 + 数字化增长 + 内容创新，四者兼备"],
+ ["经验深度","10年以上营销经验，5年以上品牌一号位经验"],
+ ["关键战绩","主导过品牌升级、爆款打造、全国性营销战役、出海品牌建设"],
+ ["文化适配","适应强执行力、结果导向文化，下沉市场与加盟体系经验优先"]
+];
+function renderPortrait(){
+  $("#portraitGrid").innerHTML = PORTRAIT.map(p=>`
+    <div class="portrait-item"><div class="p-ic">◆</div><div class="p-t">${p[0]}</div><div class="p-d">${p[1]}</div></div>`).join("");
+}
+/* ---- 目标公司版图 ---- */
+function renderSectors(){
+  let total = 0;
+  $("#sectorGrid").innerHTML = SECTORS.map(sec=>{
+    total += sec.cos.length;
+    return `<div class="sector"><h4>${sec.name}<span class="cnt">${sec.cos.length} 家</span></h4>
+      <div class="cos">${sec.cos.map(c=>`<span class="co-chip"><b>${esc(c.n)}</b>${c.subs?`<span class="subs"> · ${esc(c.subs)}</span>`:""}</span>`).join("")}</div></div>`;
+  }).join("");
+  $("#sectorCount").textContent = total;
+}
+/* ---- 来源池表 ---- */
+function renderPool(){
+  $("#poolBody").innerHTML = POOLS.map(p=>`<tr><td class="name">${p[0]}</td><td style="text-align:left;color:var(--ink-2)">${p[1]}</td><td style="text-align:left">${p[2]}</td><td style="text-align:left;color:var(--ink-2)">${p[3]}</td></tr>`).join("");
+}
+/* ---- 行业卡 ---- */
+function renderIndustry(){
+  $("#industryGrid").innerHTML = INDUSTRIES.map(ind=>`
+    <div class="card pad" style="border-top:3px solid ${ind.color}">
+      <div class="card-title" style="color:${ind.color}"><span class="bar" style="background:${ind.color}"></span>${ind.name}</div>
+      <p style="font-size:13px;color:var(--ink-3);margin-bottom:10px">${ind.feat}</p>
+      <ul class="clean">${ind.adv.map(a=>`<li>${a}</li>`).join("")}</ul>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--ink-3)">代表性企业：<b style="color:var(--ink-2)">${ind.cos}</b></div>
+    </div>`).join("");
+}
+/* ---- 候选人卡片 ---- */
+let trackFilter="all", diffFilter="all", sortMode="score";
+function filteredCands(){
+  let list = allCands().filter(c=>(trackFilter==="all"||c.track===trackFilter)&&(diffFilter==="all"||c.difficulty===diffFilter));
+  if(sortMode==="score") list.sort((a,b)=>b.score-a.score||a.docRank-b.docRank);
+  else if(sortMode==="rank") list.sort((a,b)=>a.docRank-b.docRank);
+  else list.sort((a,b)=>DIFF_ORDER[a.difficulty]-DIFF_ORDER[b.difficulty]||b.score-a.score);
+  return list;
+}
+function stars(n){
+  return `<span class="stars" aria-label="匹配度 ${n} 星">${[1,2,3,4,5].map(i=>`<svg class="star ${i<=n?"on":""}" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.6l-5.8 3 1.1-6.5L2.6 9.4l6.5-.9z"/></svg>`).join("")}</span>`;
+}
+const LOC_ICON = `<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>`;
+function renderCands(){
+  const list = filteredCands();
+  $("#candCount").textContent = `共 ${list.length} 位人选`;
+  $("#candGrid").innerHTML = list.map(c=>`
+    <div class="cand ${c.isExtra?"new":""}" data-id="${c.id}">
+      ${c.isExtra?`<span class="new-flag">新增</span><button class="del-btn" data-del="${c.id}" type="button" title="删除该人选" aria-label="删除该人选">×</button>`:""}
+      ${c.tier?`<span class="tier-flag">${c.tier===1?"第一梯队":"第二梯队"}</span>`:""}
+      <div class="cand-top"><span class="track-badge" style="background:${TRACK_COLOR[c.track]}">${c.track}</span><span class="match-stars" title="匹配度">${stars(c.match)}</span></div>
+      <div><div class="cand-name">${esc(c.name)}</div><div class="cand-role">${esc(c.company)} · ${esc(c.title)}</div></div>
+      <div class="cand-score-row"><div class="cand-score tnum">${c.score.toFixed(1)}<small>综合得分</small></div><span class="cand-rank">${c.isExtra?"新增人选":"文档排名 #"+c.docRank}</span></div>
+      <div class="cand-tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+      <div class="cand-meta"><span class="loc">${LOC_ICON}${esc(c.loc)}</span></div>
+      <div class="cand-foot"><span class="diff-badge" style="background:${DIFF_COLOR[c.difficulty]}">挖动难度 · ${c.difficulty}</span><span class="open">查看详情 →</span></div>
+    </div>`).join("") + `
+    <div class="cand sum-card" data-goto="s06">
+      <div class="cand-top"><span class="track-badge" style="background:var(--gold)">速览</span></div>
+      <div><div class="cand-name" style="font-size:17px">寻访策略速览</div><div class="cand-role">第一梯队 3 人 · 第二梯队 4 人</div></div>
+      <div style="font-size:13px;color:var(--ink-2)">重点推荐理由、寻访优先级、吸引点与风险、下一步行动清单</div>
+      <div class="cand-tags"><span class="tag">推荐梯队</span><span class="tag">优先级</span><span class="tag">行动清单</span></div>
+      <div class="cand-foot"><span style="color:var(--ink-3)">跳转至</span><span class="open">06 推荐与行动 →</span></div>
+    </div>`;
+  $$("#candGrid .cand").forEach(el=>{
+    const del = el.querySelector(".del-btn");
+    if(del) del.addEventListener("click",e=>{e.stopPropagation();delCand(+del.dataset.del)});
+    el.addEventListener("click",()=>{
+      if(el.dataset.goto){document.getElementById(el.dataset.goto).scrollIntoView({behavior:"smooth"});return}
+      openModal(+el.dataset.id);
+    });
+  });
+}
+/* ---- 弹层 ---- */
+function openModal(id){
+  const c = allCands().find(x=>x.id===id);
+  if(!c) return;
+  const bars = DIM_KEYS.map(k=>`
+    <div class="dim-row"><span class="d-n">${k}</span>
+      <div class="dim-track"><div class="dim-fill" style="width:${c.dims[k]*10}%;background:${TRACK_COLOR[c.track]}"></div></div>
+      <span class="dim-v tnum">${c.dims[k].toFixed(1)}</span></div>`).join("");
+  $("#modalBody").innerHTML = `
+    <div class="modal-head">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="track-badge" style="background:${TRACK_COLOR[c.track]}">${c.track}</span>
+          <span class="match-stars">${stars(c.match)}</span>
+          ${c.tier?`<span class="diff-badge" style="background:var(--gold)">${c.tier===1?"第一梯队 · 重点推荐":"第二梯队 · 持续关注"}</span>`:""}
+        </div>
+        <div class="modal-name" style="margin-top:8px">${esc(c.name)}</div>
+        <div class="modal-role">${esc(c.company)} · ${esc(c.title)}</div>
+      </div>
+      <div style="text-align:right;flex:none;margin-left:auto">
+        <div class="cand-score tnum">${c.score.toFixed(1)}<small style="display:block;font-size:12px;color:var(--ink-3);font-weight:600;margin-top:2px">综合得分</small></div>
+        <div style="font-size:12px;color:var(--ink-3);margin-top:4px"><span class="loc">${LOC_ICON}${esc(c.loc)}</span></div>
+      </div>
+    </div>
+    <div class="modal-sec"><h4>核心履历</h4><p>${esc(c.career)}</p></div>
+    <div class="modal-sec"><h4>代表战绩</h4><p>${esc(c.achievements)}</p></div>
+    <div class="modal-sec"><h4>核心能力</h4><p>${esc(c.abilities)}${c.book?`　·　<b>著作：</b>《${esc(c.book)}》`:""}</p></div>
+    <div class="modal-sec"><h4>六维能力评分</h4><div class="dim-bars">${bars}</div></div>
+    <div class="grid-2" style="margin-top:18px;gap:14px">
+      <div style="background:var(--green-soft);border-radius:10px;padding:12px 15px;border:1px solid #CDE3D4"><h4 style="color:var(--green);margin-bottom:6px">优势</h4><p style="font-size:13px">${esc(c.pros)}</p></div>
+      <div style="background:var(--red-soft);border-radius:10px;padding:12px 15px;border:1px solid #EFCAC4"><h4 style="color:var(--red);margin-bottom:6px">风险</h4><p style="font-size:13px">${esc(c.risks)}</p></div>
+    </div>`;
+  $("#modalMask").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+function closeModal(){$("#modalMask").classList.remove("show");document.body.style.overflow=""}
+$("#modalClose").addEventListener("click",closeModal);
+$("#modalMask").addEventListener("click",e=>{if(e.target.id==="modalMask")closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+/* ---- 组织版图 (默认展开) ---- */
+let orgTrack = ORG[0].track;
+function renderOrg(){
+  $("#orgTabs").innerHTML = ORG.map(g=>`<button class="org-tab ${g.track===orgTrack?"on":""}" data-track="${g.track}">${g.track}（${g.cos.length} 家）</button>`).join("");
+  $$("#orgTabs .org-tab").forEach(b=>b.addEventListener("click",()=>{orgTrack=b.dataset.track;renderOrg();renderOrgList();}));
+  renderOrgList();
+}
+function renderOrgList(){
+  const g = ORG.find(x=>x.track===orgTrack);
+  $("#orgList").innerHTML = g.cos.map(co=>`
+    <div class="org-co open">
+      <div class="org-co-head" style="cursor:default;"><span class="n">${esc(co.n)}</span><span class="cnt">${co.execs.length} 人</span></div>
+      <div class="org-execs">${co.execs.map(e=>`<span class="exec-chip ${e[2]?"core":""}">${esc(e[0])} <span class="role">· ${esc(e[1])}</span></span>`).join("")}</div>
+    </div>`).join("");
+}
+/* ---- 评分矩阵 ---- */
+let matSort = {key:"docRank",dir:1};
+function renderMatrix(){
+  const list=[...allCands()].sort((a,b)=>{
+    let va=a[matSort.key],vb=b[matSort.key];
+    if(matSort.key==="difficulty"){va=DIFF_ORDER[a.difficulty];vb=DIFF_ORDER[b.difficulty]}
+    return (va<vb?-1:va>vb?1:0)*matSort.dir;
+  });
+  const head = ["文档排名","姓名","现任公司","品牌战略","数字化增长","连锁运营","内容创新","全球化","文化适配","综合得分","挖动难度"]
+    .map((h,i)=>{
+      const keys=["docRank","name","company","dims.品牌战略","dims.数字化增长","dims.连锁运营","dims.内容创新","dims.全球化","dims.文化适配","score","difficulty"];
+      const arr = (i>0&&matSort.key===keys[i]) ? (matSort.dir===1?"↓":"↑") : "";
+      return `<th data-k="${keys[i]}" data-i="${i}">${h} <span class="arr">${arr}</span></th>`;
+    }).join("");
+  $("#matrixTable").innerHTML = `<thead><tr>${head}</tr></thead><tbody>` +
+    list.map(c=>`<tr data-id="${c.id}" class="${c.docRank<=3?"top3":""}">
+      <td class="tnum">${c.docRank}</td><td class="name">${esc(c.name)}</td><td class="co" title="${esc(c.company)}">${esc(c.company)}</td>
+      ${DIM_KEYS.map(k=>`<td class="tnum">${c.dims[k].toFixed(1)}</td>`).join("")}
+      <td class="score tnum">${c.score.toFixed(1)}</td>
+      <td><span class="diff-cell" style="background:${DIFF_COLOR[c.difficulty]}">${c.difficulty}</span></td></tr>`).join("") + `</tbody>`;
+  $$("#matrixTable thead th").forEach(th=>th.addEventListener("click",()=>{
+    const k=th.dataset.k;
+    if(matSort.key===k)matSort.dir*=-1;else{matSort.key=k;matSort.dir=1}
+    renderMatrix();
+  }));
+  $$("#matrixTable tbody tr").forEach(tr=>tr.addEventListener("click",()=>openModal(+tr.dataset.id)));
+}
+/* ---- 图表 ---- */
+const charts={};
+function mkChart(id,opt){
+  if(typeof echarts==="undefined"){
+    $("#"+id).innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--ink-3);font-size:13px">图表库加载失败（需联网加载 ECharts），请检查网络后刷新。</div>`;
+    return;
+  }
+  charts[id]=echarts.init($("#"+id));
+  charts[id].setOption(opt);
+}
+function renderCharts(){
+  if(typeof echarts==="undefined"){["chartTrack","chartDiff","chartScore","chartRadar"].forEach(id=>mkChart(id,{}));return}
+  /* 赛道构成 */
+  const trackCnt={};allCands().forEach(c=>trackCnt[c.track]=(trackCnt[c.track]||0)+1);
+  mkChart("chartTrack",{
+    color:["#B1130F","#2E7D4F","#2F5E8C"],
+    tooltip:{trigger:"item",formatter:p=>`${p.name}：${p.value} 人（${p.percent}%）`},
+    legend:{bottom:0,itemWidth:12,itemHeight:8,textStyle:{fontSize:12,color:"#5E554D"}},
+    series:[{type:"pie",radius:["46%","68%"],center:["50%","44%"],
+      label:{fontSize:12,color:"#241C17",formatter:"{b}\n{c}人"},
+      data:Object.keys(trackCnt).map(k=>({name:k,value:trackCnt[k],itemStyle:{color:TRACK_COLOR[k]}}))}]
+  });
+  /* 挖动难度 */
+  const diffCnt={};allCands().forEach(c=>diffCnt[c.difficulty]=(diffCnt[c.difficulty]||0)+1);
+  const diffOrder=["中低","中","中高","高","极高"];
+  mkChart("chartDiff",{
+    tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:p=>`${p[0].name}：${p[0].value} 人`},
+    grid:{left:8,right:30,top:14,bottom:4,containLabel:true},
+    xAxis:{type:"value",minInterval:1,splitLine:{lineStyle:{color:"#EEE6DA"}},axisLabel:{color:"#8A8076"}},
+    yAxis:{type:"category",data:diffOrder,inverse:true,axisTick:{show:false},axisLine:{show:false},axisLabel:{color:"#241C17",fontSize:12.5}},
+    series:[{type:"bar",barWidth:20,data:diffOrder.map(d=>({value:diffCnt[d]||0,itemStyle:{color:DIFF_COLOR[d],borderRadius:[0,6,6,0]}})),
+      label:{show:true,position:"right",color:"#5E554D",fontSize:12}}]
+  });
+  /* 综合得分 */
+  const byScore=[...allCands()].sort((a,b)=>b.score-a.score);
+  mkChart("chartScore",{
+    tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:p=>{
+      const c=byScore[p[0].dataIndex];return `${c.name} · ${c.company}<br/>综合得分：<b>${c.score.toFixed(1)}</b><br/>文档排名：#${c.docRank}`}},
+    grid:{left:8,right:36,top:10,bottom:4,containLabel:true},
+    xAxis:{type:"value",min:0,max:10,splitLine:{lineStyle:{color:"#EEE6DA"}},axisLabel:{color:"#8A8076",fontSize:11}},
+    yAxis:{type:"category",data:byScore.map(c=>c.name),inverse:true,axisTick:{show:false},axisLine:{show:false},axisLabel:{color:"#241C17",fontSize:12.5}},
+    series:[{type:"bar",barWidth:15,
+      data:byScore.map((c,i)=>({value:c.score,
+        itemStyle:{color:c.docRank<=3?"#A97E2F":TRACK_COLOR[c.track],borderRadius:[0,7,7,0],opacity:c.docRank<=3?1:0.82},
+        label:{show:true,position:"right",color:"#5E554D",fontSize:11.5}})),
+      markLine:{silent:true,symbol:"none",lineStyle:{color:"#C9B8A0",type:"dashed"},data:[{xAxis:8.0}],label:{formatter:"8.0 分线",color:"#8A8076",fontSize:10.5,position:"end"}}}]
+  });
+  /* 雷达 */
+  const radarCands=byScore.slice(0,4);
+  mkChart("chartRadar",{
+    color:["#B1130F","#2F5E8C","#2E7D4F","#A97E2F"],
+    tooltip:{trigger:"item"},
+    legend:{bottom:0,data:radarCands.map(c=>c.name),itemWidth:12,itemHeight:8,textStyle:{fontSize:12,color:"#5E554D"}},
+    radar:{indicator:DIM_KEYS.map(k=>({name:k,max:10})),radius:"62%",center:["50%","44%"],
+      axisName:{color:"#5E554D",fontSize:11.5},splitLine:{lineStyle:{color:"#E7DFD3"}},splitArea:{areaStyle:{color:["#FBF8F2","#F5F1EA"]}},axisLine:{lineStyle:{color:"#E7DFD3"}}},
+    series:[{type:"radar",symbol:"circle",symbolSize:3,lineStyle:{width:2},
+      data:radarCands.map(c=>({name:c.name,value:DIM_KEYS.map(k=>c.dims[k]),areaStyle:{opacity:0.1}}))}]
+  });
+}
+/* ---- 推荐与行动 ---- */
+function renderReco(){
+  $("#recoGrid").innerHTML = RECOS.map(r=>`
+    <div class="reco-card">
+      <div class="reco-head ${r.cls}"><span class="reco-medal">${r.rank}</span><div><div class="rn">${r.label}</div><div class="rr">${esc(r.name)} · ${esc(r.co)}</div></div></div>
+      <div class="reco-body">
+        <div><h5>推荐理由</h5><ul class="clean" style="margin-top:8px">${r.reasons.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+        <div><h5>适配点</h5><ul class="clean" style="margin-top:8px">${r.fits.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+        <div class="reco-advice"><b>寻访建议：</b>${r.advice}</div>
+      </div>
+    </div>`).join("");
+  $("#tier2Body").innerHTML = TIER2.map(t=>`<tr><td class="name">${t[0]}</td><td style="text-align:left">${t[1]}</td><td style="text-align:left;color:var(--ink-2)">${t[2]}</td></tr>`).join("");
+  $("#prioGrid").innerHTML = PRIOS.map(p=>`<div class="prio-card ${p.cls}"><h4>${p.t}</h4><ol>${p.items.map(i=>`<li>${i}</li>`).join("")}</ol></div>`).join("");
+  $("#attractList").innerHTML = ATTRACTIONS.map(a=>`<li><b style="color:var(--ink)">${a[0]}：</b>${a[1]}</li>`).join("");
+  $("#riskList").innerHTML = RISKS.map(r=>`<li>${r}</li>`).join("");
+  const CHECK_IC = `<span class="check-ic"><svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5 10-11"/></svg></span>`;
+  $("#actionList").innerHTML = ACTIONS.map(a=>`<li>${CHECK_IC}<span>${a}</span></li>`).join("");
+}
+/* ---- 筛选事件 ---- */
+$$(".chip-btn[data-track]").forEach(b=>b.addEventListener("click",()=>{
+  $$(".chip-btn[data-track]").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on");trackFilter=b.dataset.track;renderCands();
+}));
+$("#diffFilter").addEventListener("change",e=>{diffFilter=e.target.value;renderCands()});
+$("#sortFilter").addEventListener("change",e=>{sortMode=e.target.value;renderCands()});
+
+/* ---- 智能匹配算法 ---- */
+const SKILL_DICT = {
+  "品牌": ["品牌", "brand"], "升级": ["升级", "焕新", "重塑"], "数字化": ["数字化", "数据", "增长", "CGO"],
+  "私域": ["私域", "会员", "用户"], "内容": ["内容", "种草", "社交媒体", "营销"], "爆款": ["爆款", "出圈", "刷屏", "热门"],
+  "全球化": ["全球", "出海", "国际", "海外", "亚太"], "万店": ["万店", "千店", "连锁", "规模", "门店"],
+  "加盟": ["加盟", "特许经营", "经销"], "餐饮": ["餐饮", "茶饮", "咖啡", "火锅"],
+  "麦当劳": ["麦当劳", "McDonald"], "星巴克": ["星巴克", "Starbucks"], "咖啡": ["咖啡"],
+  "美妆": ["美妆", "珀莱雅"], "潮玩": ["潮玩", "泡泡玛特"], "营销": ["营销", "CMO", "CGO", "市场"]
+};
+
+function onLocalMatch(){
+  const jdText = document.getElementById('jdInput').value.trim().toLowerCase();
+  if(!jdText) { alert('请先输入岗位JD！'); return; }
+
+  const jdKeywords = new Set();
+  for (const [key, synonyms] of Object.entries(SKILL_DICT)) {
+    if (synonyms.some(word => jdText.includes(word.toLowerCase()))) {
+      jdKeywords.add(key);
+    }
+  }
+
+  const candidates = allCands();
+  const scoredCandidates = candidates.map(c => {
+    let score = 0;
+    const matchReasons = [];
+    const candidateText = `${c.tags.join(' ')} ${c.abilities} ${c.career} ${c.achievements} ${c.company} ${c.title}`.toLowerCase();
+
+    jdKeywords.forEach(keyword => {
+      const synonyms = SKILL_DICT[keyword];
+      if (synonyms.some(word => candidateText.includes(word.toLowerCase()))) {
+        score += 15;
+        if (!matchReasons.includes(keyword)) matchReasons.push(keyword);
+      }
+    });
+
+    score += c.score * 2;
+    return { ...c, matchScore: score, matchReasons };
+  });
+
+  scoredCandidates.sort((a, b) => b.matchScore - a.matchScore);
+  const topMatches = scoredCandidates.slice(0, 3);
+
+  const matchGrid = document.getElementById('matchGrid');
+  const matchResults = document.getElementById('matchResults');
+  
+  matchResults.style.display = 'block';
+  matchResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  matchGrid.innerHTML = topMatches.map((c, index) => {
+    const reasonsHtml = c.matchReasons.length > 0 
+      ? c.matchReasons.map(r => `<span class="tag" style="background:var(--green-soft);border-color:#CDE3D4;color:var(--green)">命中: ${r}</span>`).join('')
+      : `<span class="tag">综合匹配</span>`;
+
+    return `
+    <div class="cand" data-id="${c.id}" style="border-color:${index===0?'var(--gold)':'var(--line)'}">
+      ${index===0?`<span class="tier-flag" style="background:var(--gold)">匹配度最高</span>`:''}
+      <div class="cand-top">
+        <span class="track-badge" style="background:${TRACK_COLOR[c.track]}">${c.track}</span>
+        <span class="match-stars">${stars(c.match)}</span>
+      </div>
+      <div><div class="cand-name">${esc(c.name)}</div><div class="cand-role">${esc(c.company)} · ${esc(c.title)}</div></div>
+      <div class="cand-score-row">
+        <div class="cand-score tnum" style="color:var(--green)">${c.matchScore.toFixed(0)}<small>匹配分</small></div>
+        <span class="cand-rank">综合分 ${c.score.toFixed(1)}</span>
+      </div>
+      <div class="cand-tags" style="margin-bottom:8px;">
+        ${reasonsHtml}
+      </div>
+      <div class="cand-foot">
+        <span class="diff-badge" style="background:${DIFF_COLOR[c.difficulty]}">挖动难度 · ${c.difficulty}</span>
+        <span class="open">查看详情 →</span>
+      </div>
+    </div>
+    `;
+  }).join('');
+
+  $$("#matchGrid .cand").forEach(el => {
+    el.addEventListener("click", () => openModal(+el.dataset.id));
+  });
+}
+
+/* ---- 脉脉联网搜索 ---- */
+const MM_BRIDGE = "http://127.0.0.1:8787";
+const MM_SEARCH_PAGE = "https://maimai.cn/ent/v41/recruit/talents?pid=&tab=1";
+function mmGetSearchPage(){ return MM_SEARCH_PAGE; }
+const MM_ROLES = ["首席营销官","品牌营销负责人","首席增长官","品牌副总裁","市场副总裁","品牌总监","品牌总经理","营销负责人","市场总监","首席品牌官","首席运营官","首席财务官","首席人力官","首席技术官","产品总监","产品经理","运营总监","运营经理","市场经理","销售总监","销售经理","技术总监","人力总监","供应链总监","采购总监","区域经理","总经理","副总裁","总裁","合伙人","创始人","董事长","店长","院长","CGO","CMO","COO","CTO","CFO","CHO","HRD","VP","CXO","总监","经理","负责人","主管","专家","顾问","主任"];
+const MM_INDUSTRIES = ["餐饮","茶饮","咖啡","食品饮料","饮料","零售","新消费","美妆","潮玩","火锅","生鲜"];
+const MM_SKILLS = ["用户增长","增长","数字化","数据","私域","会员","内容营销","内容","种草","IP联名","IP","全球化","出海","国际","加盟","特许经营","连锁","万店","爆款","品牌升级","品牌","电商","直播","短视频","渠道","供应链","转化","留存"];
+const MM_ROLE_DIRS = ["产品","运营","市场","品牌","销售","技术","研发","算法","供应链","采购","人力","财务","设计","内容","增长","渠道","门店","餐饮","零售","电商","数据","测试","客服","行政","法务","公关","营销","招商","加盟"];
+const MM_ROLE_DIRS_SAFE = ["产品","技术","研发","算法","供应链","采购","人力","财务","设计","门店","餐饮","零售","电商","数据","测试","客服","行政","法务","公关","招商","加盟"];
+const MM_COMPANIES = ["麦当劳","星巴克","瑞幸","喜茶","霸王茶姬","蜜雪冰城","古茗","奈雪","百胜","肯德基","必胜客","元气森林","蒙牛","伊利","农夫山泉","宝洁","联合利华","雀巢","百事","可口可乐","欧莱雅","泡泡玛特","名创优品","珀莱雅","小红书","京东","阿里","字节","美团","海底捞"];
+let mmQueries = [];
+let mmBridgeState = null;
+
+function mmPick(jd, list, max){
+  const out = []; const low = jd.toLowerCase();
+  for(const w of list){ if(low.includes(w.toLowerCase()) && !out.includes(w)){ out.push(w); if(out.length >= max) break; } }
+  return out;
+}
+function mmDropSubstr(list){
+  return list.filter(w => !list.some(o => o !== w && o.includes(w)));
+}
+function mmExtractRoles(jd){
+  const low = jd.toLowerCase();
+  let out = [];
+  // 1) 完整岗位词表（含 产品经理/产品总监/CMO 等）
+  for(const w of MM_ROLES){ if(low.includes(w.toLowerCase()) && !out.includes(w)) out.push(w); }
+  out = mmDropSubstr(out);
+  const generic = ["总监","经理","负责人","主管","专家","顾问","主任","VP","总裁","总经理","合伙人"];
+  if(out.some(w => !generic.includes(w))) return out.slice(0, 2);
+  // 2) 方向词 × 职级后缀 的完整组合（如 产品负责人、技术VP）
+  const suffix = ["总监","经理","负责人","主管","专家","VP","总裁","总经理"];
+  for(const d of MM_ROLE_DIRS){ for(const s of suffix){ const c = d + s; if(low.includes(c) && !out.includes(c)) out.push(c); } }
+  out = mmDropSubstr(out).filter(w => !generic.includes(w));
+  if(out.length) return out.slice(0, 2);
+  // 3) 只有方向词（如仅出现「产品」）→ 用方向词 + 默认职级生成
+  for(const d of MM_ROLE_DIRS_SAFE){ if(low.includes(d)) return [d + "总监", d + "经理"]; }
+  return [];
+}
+function extractMaimaiQueries(jd){
+  const queries = [];
+  const push = (label, query) => { if(query && !queries.some(q=>q.query===query)) queries.push({label, query}); };
+  const roles = mmExtractRoles(jd);
+  const role0 = roles[0] || "CMO";
+  push("岗位", role0);
+  if(roles[1] && roles[1] !== role0) push("岗位", roles[1]);
+  mmDropSubstr(mmPick(jd, MM_INDUSTRIES, 4)).slice(0, 3).forEach(ind => push("行业", `${role0} ${ind}`));
+  mmDropSubstr(mmPick(jd, MM_SKILLS, 6)).slice(0, 4).forEach(sk => push("技能", `${role0} ${sk}`));
+  mmPick(jd, MM_COMPANIES, 4).forEach(co => push("公司", `${co} ${role0}`));
+  if(queries.length === 0){ push("岗位", "品牌营销负责人"); push("岗位", "首席营销官"); }
+  return queries.slice(0, 8);
+}
+function copyText(t){
+  if(navigator.clipboard && navigator.clipboard.writeText){ return navigator.clipboard.writeText(t).catch(()=>fallbackCopy(t)); }
+  return fallbackCopy(t);
+}
+function fallbackCopy(t){
+  return new Promise(res=>{
+    const ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta); res();
+  });
+}
+let _mmToastEl = null, _mmToastTimer = null;
+function mmToast(msg){
+  if(!_mmToastEl){
+    _mmToastEl = document.createElement("div");
+    _mmToastEl.style.cssText = "position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:#241C17;color:#fff;font-size:13px;padding:9px 18px;border-radius:10px;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .3s;opacity:0;pointer-events:none;max-width:82vw;line-height:1.5;";
+    document.body.appendChild(_mmToastEl);
+  }
+  _mmToastEl.textContent = msg; _mmToastEl.style.opacity = "1";
+  clearTimeout(_mmToastTimer); _mmToastTimer = setTimeout(()=>_mmToastEl.style.opacity = "0", 2800);
+}
+async function mmCheckBridge(){
+  try{
+    const ctl = new AbortController(); const t = setTimeout(()=>ctl.abort(), 2000);
+    const r = await fetch(MM_BRIDGE + "/health", { signal: ctl.signal }); clearTimeout(t);
+    if(!r.ok) return { online:false };
+    const j = await r.json(); return Object.assign({ online:true }, j);
+  }catch(e){ return { online:false }; }
+}
+async function mmBridgeSearch(queries){
+  const ctl = new AbortController(); const t = setTimeout(()=>ctl.abort(), 180000);
+  const r = await fetch(MM_BRIDGE + "/api/search", {
+    method:"POST", headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({ queries: queries.map(q=>q.query), limit: 10 }), signal: ctl.signal
+  }); clearTimeout(t);
+  return await r.json();
+}
+async function mmBridgeOpen(query){
+  const ctl = new AbortController(); const t = setTimeout(()=>ctl.abort(), 30000);
+  try{
+    const r = await fetch(MM_BRIDGE + "/api/open", {
+      method:"POST", headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify({ query }), signal: ctl.signal
+    });
+    clearTimeout(t);
+    return await r.json();
+  }catch(e){
+    clearTimeout(t);
+    return { ok:false, online:false, error: String((e && e.message) || e) };
+  }
+}
+function updateMmStatus(st){
+  const el = $("#mmStatus"), txt = $("#mmStatusText");
+  if(st && st.online){
+    el.classList.add("online");
+    txt.textContent = st.logged_in ? "本地桥在线 · 脉脉已登录" : "本地桥在线 · 待登录脉脉";
+  }else{
+    el.classList.remove("online");
+    txt.textContent = "本地桥离线（跳转模式可用）";
+  }
+}
+function updateMmHint(){
+  const el = $("#mmHint");
+  if(mmBridgeState && mmBridgeState.online && mmBridgeState.logged_in){
+    el.innerHTML = "✅ 本地桥已连接且脉脉已登录，可点击「自动抓取结果」直接把脉脉人才搜索结果抓回看板展示。";
+  }else if(mmBridgeState && mmBridgeState.online){
+    el.innerHTML = "本地桥已连接，但脉脉尚未登录：请在弹出的浏览器窗口里登录脉脉后，再点「自动抓取结果」；现在可先用「在脉脉打开」跳转搜索。";
+  }else{
+    el.innerHTML = "未检测到本地桥服务：当前为<b>跳转模式</b>，点击关键词会复制并跳转脉脉（用你自己的登录态查看结果）。如需「自动抓取回填」，请按使用说明启动本地桥（maimai_bridge，端口 8787）。";
+  }
+}
+function renderMaimaiPanel(queries){
+  $("#mmKwList").innerHTML = queries.map(q=>`
+    <span class="mm-kw"><span>${esc(q.label)} · ${esc(q.query)}</span><span class="go" data-q="${esc(q.query)}">在脉脉打开 ↗</span></span>`).join("");
+  $$("#mmKwList .go").forEach(el=>el.addEventListener("click", ()=>mmOpenMaimai(el.dataset.q)));
+}
+async function mmOpenMaimai(query){
+  copyText(query).catch(()=>{});
+  const res = await mmBridgeOpen(query);
+  if(res && res.ok){
+    mmToast(`已打开脉脉并自动填入「${query}」`);
+    return;
+  }
+  if(res && res.logged_in === false){
+    mmToast("脉脉未登录：已打开浏览器窗口，登录后即可搜索（关键词已复制）");
+    return;
+  }
+  mmToast(`已复制关键词「${query}」，在脉脉搜索框 Ctrl+V 粘贴即可`);
+  window.open(mmGetSearchPage(), "_blank");
+}
+function renderMaimaiResults(results){
+  const grid = $("#mmResultGrid");
+  if(!results || !results.length){
+    grid.innerHTML = `<div class="mm-loading">没有抓到结果。请确认脉脉已登录、账号具备人才搜索权限；或改用「在脉脉打开」手动搜索。</div>`;
+    return;
+  }
+  grid.innerHTML = results.map(p=>`
+    <div class="mm-person" data-url="${esc(p.url || "")}">
+      <div class="mm-name">${esc(p.name || "（姓名未识别）")}</div>
+      <div class="mm-pos">${esc([p.company, p.title].filter(Boolean).join(" · ") || "—")}</div>
+      <div class="mm-meta">
+        ${p.years ? `<span>${esc(p.years)}</span>` : ""}
+        ${p.city ? `<span>${esc(p.city)}</span>` : ""}
+        ${p.school ? `<span>${esc(p.school)}</span>` : ""}
+      </div>
+      ${p.sourceQuery ? `<span class="mm-q">命中词：${esc(p.sourceQuery)}</span>` : ""}
+    </div>`).join("");
+  $$("#mmResultGrid .mm-person").forEach(el=>el.addEventListener("click", ()=>{
+    const u = el.dataset.url; if(u) window.open(u, "_blank");
+  }));
+}
+async function onMaimaiSearch(){
+  const jd = $("#jdInput").value.trim();
+  if(!jd){ alert("请先输入岗位 JD！"); return; }
+  onLocalMatch();
+  mmQueries = extractMaimaiQueries(jd);
+  renderMaimaiPanel(mmQueries);
+  $("#maimaiPanel").style.display = "block";
+  $("#maimaiPanel").scrollIntoView({ behavior:"smooth", block:"start" });
+  $("#mmResultGrid").innerHTML = "";
+  $("#mmStatusText").textContent = "检测连接中…";
+  const st = await mmCheckBridge();
+  mmBridgeState = st;
+  updateMmStatus(st);
+  updateMmHint();
+  $("#mmAutoBtn").disabled = !(st && st.online);
+}
+async function onMaimaiAuto(){
+  if(!mmQueries.length){ alert("请先点击「脉脉联网搜索」生成关键词"); return; }
+  const grid = $("#mmResultGrid");
+  grid.innerHTML = `<div class="mm-loading"><span class="mm-spinner"></span>正在脉脉自动搜索 ${mmQueries.length} 个关键词，可能需要 1–3 分钟，请稍候…</div>`;
+  try{
+    const res = await mmBridgeSearch(mmQueries);
+    if(res && res.ok){ renderMaimaiResults(res.results || []); mmToast(`抓取完成，共 ${(res.results || []).length} 条结果`); }
+    else if(res && res.logged_in === false){
+      grid.innerHTML = `<div class="mm-loading" style="color:var(--red)">脉脉尚未登录。请在弹出的浏览器窗口中登录脉脉后重试。</div>`;
+    }else{
+      grid.innerHTML = `<div class="mm-loading" style="color:var(--red)">抓取失败：${esc((res && res.error) || "未知错误")}</div>`;
+    }
+  }catch(e){
+    grid.innerHTML = `<div class="mm-loading" style="color:var(--red)">无法连接本地桥（${esc(e.message || e)}）。请确认 maimai_bridge 已启动（端口 8787）并已登录脉脉。</div>`;
+  }
+}
+async function onMaimaiAllOpen(){
+  if(!mmQueries.length){ alert("请先点击「脉脉联网搜索」生成关键词"); return; }
+  copyText(mmQueries.map(q=>q.query).join("、")).catch(()=>{});
+  const res = await mmBridgeOpen(mmQueries[0].query);
+  if(res && res.ok){
+    mmToast(`已打开脉脉并自动填入「${mmQueries[0].query}」，其余 ${mmQueries.length} 个关键词已复制`);
+    return;
+  }
+  if(res && res.logged_in === false){
+    mmToast("脉脉未登录：已打开浏览器窗口，登录后即可搜索（关键词已复制）");
+    return;
+  }
+  mmToast(`已复制全部 ${mmQueries.length} 个关键词，在脉脉搜索框 Ctrl+V 粘贴即可`);
+  window.open(mmGetSearchPage(), "_blank");
+}
+$("#maimaiBtn").addEventListener("click", onMaimaiSearch);
+$("#mmAutoBtn").addEventListener("click", onMaimaiAuto);
+$("#mmAllOpenBtn").addEventListener("click", onMaimaiAllOpen);
+async function initMaimai(){
+  const st = await mmCheckBridge();
+  mmBridgeState = st;
+  updateMmStatus(st);
+}
+
+/* ---- 添加候选人（本地持久化） ---- */
+const EXTRA_KEY="cmoMapping_extra_v1";
+let extraCands=[];
+try{extraCands=JSON.parse(localStorage.getItem(EXTRA_KEY)||"[]")}catch(e){extraCands=[]}
+if(!Array.isArray(extraCands))extraCands=[];
+function allCands(){return CANDIDATES.concat(extraCands)}
+function saveExtra(){try{localStorage.setItem(EXTRA_KEY,JSON.stringify(extraCands))}catch(e){}}
+let extraSeq=0;
+function refreshAll(){renderKPI();renderCands();renderMatrix();renderCharts()}
+function openCandForm(){
+  $("#dimInputs").innerHTML = DIM_KEYS.map((k,i)=>`<div class="f-field"><label>${k}</label><input id="d${i}" type="number" min="0" max="10" step="0.1" value="5.0"></div>`).join("");
+  $("#formMask").classList.add("show");
+  document.body.style.overflow="hidden";
+  setTimeout(()=>$("#fName").focus(),50);
+}
+function closeCandForm(){$("#formMask").classList.remove("show");document.body.style.overflow=""}
+function submitCand(ev){
+  ev.preventDefault();
+  const name=$("#fName").value.trim(), company=$("#fCompany").value.trim();
+  if(!name||!company){alert("请填写姓名与现任公司");return}
+  const dims={};
+  DIM_KEYS.forEach((k,i)=>{const v=parseFloat($("#d"+i).value);dims[k]=isNaN(v)?5:Math.min(10,Math.max(0,v))});
+  const score=parseFloat($("#fScore").value);
+  extraSeq++;
+  extraCands.push({
+    id:-extraSeq,isExtra:true,name,company,
+    title:$("#fTitle").value.trim()||"—",
+    track:$("#fTrack").value,
+    loc:$("#fLoc").value.trim()||"—",
+    difficulty:$("#fDiff").value,
+    match:parseInt($("#fMatch").value,10),
+    score:isNaN(score)?7.5:Math.min(10,Math.max(0,score)),
+    docRank:Math.max(...CANDIDATES.map(c=>c.docRank))+extraSeq,
+    tier:$("#fTier").value?parseInt($("#fTier").value,10):null,
+    tags:$("#fTags").value.split(/[,，]/).map(s=>s.trim()).filter(Boolean),
+    career:$("#fCareer").value.trim()||"待补充",
+    achievements:$("#fAchieve").value.trim()||"待补充",
+    abilities:$("#fAbilities").value.trim()||"待补充",
+    pros:$("#fPros").value.trim()||"待补充",
+    risks:$("#fRisks").value.trim()||"待补充",
+    dims
+  });
+  saveExtra();closeCandForm();refreshAll();
+}
+function delCand(id){
+  const c=allCands().find(x=>x.id===id);
+  if(!c||!c.isExtra)return;
+  if(!confirm(`确定删除新增人选「${c.name}」吗？将同时从本机保存数据中移除。`))return;
+  extraCands=extraCands.filter(x=>x.id!==id);
+  saveExtra();refreshAll();
+}
+$("#addCandBtn").addEventListener("click",openCandForm);
+$("#formClose").addEventListener("click",closeCandForm);
+$("#formCancel").addEventListener("click",closeCandForm);
+$("#formMask").addEventListener("click",e=>{if(e.target.id==="formMask")closeCandForm()});
+$("#candForm").addEventListener("submit",submitCand);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCandForm()});
+/* ---- 返回顶部 ---- */
+const toTop=$("#toTop");
+window.addEventListener("scroll",()=>{toTop.classList.toggle("show",window.scrollY>600)});
+toTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+/* ---- 初始化 ---- */
+renderKPI();renderPortrait();renderSectors();renderPool();renderIndustry();
+renderCands();renderOrg();renderMatrix();renderCharts();renderReco();
+initMaimai();
+window.addEventListener("resize",()=>{Object.values(charts).forEach(ch=>ch&&ch.resize())});
+</script>
+
+</body>
+</html>
